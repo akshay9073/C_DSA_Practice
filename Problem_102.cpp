@@ -28,8 +28,7 @@ int main()
 			{
 				flag=1;
 				break;
-			}3
-			3
+			}
 		}
 	}
 	
