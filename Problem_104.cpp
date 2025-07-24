@@ -21,7 +21,7 @@ int main()
 	}
 	
 	int mat3[rows][cols];
-	printf("\n\nAddition of two matrix\n\n");
+	printf("\n\nSubtraction of two matrix\n\n");
 	for(int i=0;i<rows;i++)
 	{
 		for(int j=0;j<cols;j++)
