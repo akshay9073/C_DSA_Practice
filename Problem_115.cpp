@@ -3,7 +3,7 @@ int main()
 {
 	char str[20];
 	printf("\nEnter space seprated string : ");
-	scanf("%[^\n]s",&str);
+	scanf("%[^\n]",str);
 	
 	printf("\n%s",str);
 	
