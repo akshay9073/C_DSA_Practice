@@ -4,8 +4,12 @@ void display(int rows, int cols, int mat[rows][cols]);
 
 int main()
 {
-    int rows = 3, cols = 3;
-    int mat[rows][cols];
+    int rows,cols;
+    printf("\nEnter rows and columns : ");
+    scanf("%d %d",&rows,&cols);
+	int mat[rows][cols];
+    
+    
 
     printf("\nEnter the matrix elements: \n");
     for (int i = 0; i < rows; i++)
@@ -27,7 +31,7 @@ int main()
                 {
                     mat[i][k] = 0;
                 }
-                break; // Avoid reprocessing the same row again
+                break;
             }
         }
     }
