@@ -1,5 +1,6 @@
 #include<stdio.h>
 void accept_matrix(int r,int c,int [][c]);
+void display_matrix(int r,int c,int [][c]);
 int main()
 {
 	int mat[20][20],r,c;
@@ -25,6 +26,11 @@ int main()
 				accept_matrix(r,c,mat);
 				break;
 				
+			case 2:
+				printf("\nDisplay Matrix\n");
+				display_matrix(r,c,mat);
+				break;
+				
 				
 		}
 	}
@@ -39,5 +45,16 @@ void accept_matrix(int r,int c,int mat[][c])
 		{
 			scanf("%d",&mat[i][j]);
 		}
+	}
+}
+
+void display_matrix(int r,int c,int mat[][c])
+{
+	for(int i=0;i<r;i++)
+	{
+		for(int j=0;j<c;j++)
+		printf("%d\t",mat[i][j]);
+		
+		printf("\n");
 	}
 }
