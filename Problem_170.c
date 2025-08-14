@@ -165,6 +165,6 @@ void sparse_to_matrix(int smat[][3],int mat[][smat[0][1]])
 		}
 	}
 	
-	for(int i=1;i<=smat[0][0];i++)
+	for(int i=1;i<=smat[0][2];i++)
 	mat[smat[i][0]][smat[i][1]]=smat[i][2];
 }
