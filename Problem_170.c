@@ -5,6 +5,7 @@ void accept_sm(int smat[][3]);
 void display_sm(int smat[][3],int);
 void matrix_to_sparse(int smat[][3],int mat[][smat[0][1]]);
 void sparse_to_matrix(int smat[][3],int mat[][smat[0][1]]);
+void transpose(int smat[][3]);
 int main()
 {
 	int mat[20][20],r,c;
@@ -21,6 +22,7 @@ int main()
 		printf("\n 4)Display Sparse Matrix");
 		printf("\n 5)Convert Matrix to Sparse");
 		printf("\n 6)Convert Sparse to Matrix");
+		printf("\n 7)Transpose of Sparse");
 		printf("\n===========================================\n");
 		
 		printf("\nEnter the choice : ");
@@ -60,6 +62,11 @@ int main()
 				printf("\nConversion Success!!");
 				r=smat[0][0];
 				c=smat[0][1];
+				break;
+				
+			case 7:
+				transpose(smat);
+				printf("\nTranspose success!!");
 				break;
 				
 				
@@ -168,3 +175,16 @@ void sparse_to_matrix(int smat[][3],int mat[][smat[0][1]])
 	for(int i=1;i<=smat[0][2];i++)
 	mat[smat[i][0]][smat[i][1]]=smat[i][2];
 }
+
+void transpose(int smat[][3])
+{
+	for(int i=0;i<=smat[0][2];i++)
+	{
+			int temp;
+	temp=smat[i][0];
+	smat[i][0]=smat[i][1];
+	smat[i][1]=temp;
+	}
+}
+
+
