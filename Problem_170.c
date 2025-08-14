@@ -2,6 +2,7 @@
 void accept_matrix(int r,int c,int [][c]);
 void display_matrix(int r,int c,int [][c]);
 void accept_sm(int smat[][3],int);
+void accept_sm(int smat[][3],int);
 int main()
 {
 	int mat[20][20],r,c;
@@ -15,6 +16,7 @@ int main()
 		printf("\n 1)Accept Matrix");
 		printf("\n 2)Display Matrix");
 		printf("\n 3)Accept Sparse Matrix");
+		printf("\n 4)Display Sparse Matrix");
 		printf("\n===========================================\n");
 		
 		printf("\nEnter the choice : ");
@@ -37,6 +39,11 @@ int main()
 				printf("\nEnter the rows you want in sparse matrix : ");
 				scanf("%d",&r);
 				accept_sm(smat,r);
+				break;
+				
+			case 4:
+				printf("\nDisplay Sparse Matrix");
+				display_sm(smat,r);
 				break;
 				
 				
@@ -69,11 +76,46 @@ void display_matrix(int r,int c,int mat[][c])
 
 void accept_sm(int smat[][3],int r)
 {
-	printf("\nEnter data in sparse matrix : ");
-	
-	for(int i=0;i<r;i++)
+	int i, nonZeroCount;
+
+    printf("Enter total rows in original matrix: ");
+    scanf("%d", &smat[0][0]);
+
+    printf("Enter total columns in original matrix: ");
+    scanf("%d", &smat[0][1]);
+
+    printf("Enter number of non-zero elements: ");
+    scanf("%d", &nonZeroCount);
+
+    smat[0][2] = nonZeroCount;
+
+    for(i = 1; i <= nonZeroCount; i++)
+    {
+        printf("\nEnter row index for element %d: ", i);
+        scanf("%d", &smat[i][0]);
+
+        printf("Enter column index for element %d: ", i);
+        scanf("%d", &smat[i][1]);
+
+        printf("Enter value for element %d: ", i);
+        scanf("%d", &smat[i][2]);
+    }
+}
+
+void display_sm(int smat[][3],int r)
+{
+	printf("\nSparse Matrix Representation (Triplet Form):\n");
+    printf("[TotalRows, TotalCols, NonZeroCount]\n");
+    printf("%d\t%d\t%d\n", smat[0][0], smat[0][1], smat[0][2]);
+
+    printf("\n[RowIndex, ColIndex, Value]\n");
+	for(int i=0;i<=smat[0][2];i++)
 	{
 		for(int j=0;j<3;j++)
-		scanf("%d",&smat[i][j]);
+		{
+			printf("%d\t",smat[i][j]);
+		}
+		
+		printf("\n");
 	}
 }
