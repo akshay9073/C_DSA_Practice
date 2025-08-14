@@ -1,8 +1,9 @@
 #include<stdio.h>
 void accept_matrix(int r,int c,int [][c]);
 void display_matrix(int r,int c,int [][c]);
-void accept_sm(int smat[][3],int);
-void accept_sm(int smat[][3],int);
+void accept_sm(int smat[][3]);
+void display_sm(int smat[][3],int);
+void matrix_to_sparse(int smat[][3],int mat[][smat[0][1]]);
 int main()
 {
 	int mat[20][20],r,c;
@@ -17,6 +18,7 @@ int main()
 		printf("\n 2)Display Matrix");
 		printf("\n 3)Accept Sparse Matrix");
 		printf("\n 4)Display Sparse Matrix");
+		printf("\n 5)Convert Matrix to Sparse");
 		printf("\n===========================================\n");
 		
 		printf("\nEnter the choice : ");
@@ -36,14 +38,19 @@ int main()
 				break;
 				
 			case 3:
-				printf("\nEnter the rows you want in sparse matrix : ");
-				scanf("%d",&r);
-				accept_sm(smat,r);
+				accept_sm(smat);
 				break;
 				
 			case 4:
 				printf("\nDisplay Sparse Matrix");
 				display_sm(smat,r);
+				break;
+				
+			case 5:
+				smat[0][0]=r;
+				smat[0][1]=c;
+				matrix_to_sparse(smat,mat);
+				printf("\nConversion Success!!");
 				break;
 				
 				
@@ -74,7 +81,7 @@ void display_matrix(int r,int c,int mat[][c])
 	}
 }
 
-void accept_sm(int smat[][3],int r)
+void accept_sm(int smat[][3])
 {
 	int i, nonZeroCount;
 
@@ -118,4 +125,23 @@ void display_sm(int smat[][3],int r)
 		
 		printf("\n");
 	}
+}
+
+void matrix_to_sparse(int smat[][3],int mat[][smat[0][1]])
+{
+	int k=1;
+	for(int i=0;i<smat[0][0];i++)
+	{
+		for(int j=0;j<smat[0][1];j++)
+		{
+			if(mat[i][j]!=0)
+			{
+				smat[k][0]=i;
+				smat[k][1]=j;
+				smat[k][2]=mat[i][j];
+				k++;
+			}
+		}
+	}
+	smat[0][2]=k-1;
 }
