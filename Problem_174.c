@@ -142,6 +142,13 @@ node *insert_first(node *head,int x)
 
 node *insert_last(node *head,int x)
 {
+	if(head==NULL) {
+    node *q=cn();
+    q->data=x;
+    q->next=NULL;
+    printf("\nInsert Last Success");
+    return q;  
+}
 	node *p=head;
 	while(p->next!=NULL)
 	p=p->next;
