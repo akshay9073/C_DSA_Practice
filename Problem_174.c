@@ -166,6 +166,11 @@ node *insert_last(node *head,int x)
 
 node *insert_between(node *head,int pos,int x)
 {
+	
+	if(pos <= 1) {
+    return insert_first(head, x);
+}
+	
 	node *p,*q;
 	p=head;
 	
