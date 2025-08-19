@@ -11,6 +11,7 @@ node *cn();
 node *insert_first(node *,int);
 node *insert_last(node *,int);
 node *insert_between(node *,int,int);
+node *delete_first(node *);
 void display(node *);
 int main()
 {
@@ -25,6 +26,7 @@ int main()
 		printf("\n 3)Insert at First");
 		printf("\n 4)Insert at Last");
 		printf("\n 5)Insert at Between");
+		printf("\n 6)Delete first Node in SLL");
 		printf("\n===========================================================\n");
 	
 	printf("\nEnter your choice : ");
@@ -57,6 +59,10 @@ int main()
 			printf("\nEnter the position and data to insert : ");
 			scanf("%d %d",&pos,&x);
 			HEAD=insert_between(HEAD,pos,x);
+			break;
+			
+		case 6:
+			HEAD=delete_first(HEAD);
 			break;
 			
 	}
@@ -163,5 +169,19 @@ node *insert_between(node *head,int pos,int x)
 	p->next=q;
 	
 	printf("\nInsert at positon %d success !!!",pos);
+	return head;
+}
+
+node *delete_first(node *head)
+{
+	
+	node *p;
+	p=head;
+	
+	head=p->next;
+	free(p);
+	
+	p=NULL;
+	printf("\nDelete first node Success!!");
 	return head;
 }
