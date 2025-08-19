@@ -174,6 +174,11 @@ node *insert_between(node *head,int pos,int x)
 
 node *delete_first(node *head)
 {
+	if(head==NULL)
+	{
+		printf("\nDelete failed Linked List is Empty");
+		return head;
+	}
 	
 	node *p;
 	p=head;
