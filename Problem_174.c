@@ -12,6 +12,7 @@ node *insert_first(node *,int);
 node *insert_last(node *,int);
 node *insert_between(node *,int,int);
 node *delete_first(node *);
+node *delete_last(node *);
 void display(node *);
 int main()
 {
@@ -27,6 +28,7 @@ int main()
 		printf("\n 4)Insert at Last");
 		printf("\n 5)Insert at Between");
 		printf("\n 6)Delete first Node in SLL");
+		printf("\n 7)Delete Last Node");
 		printf("\n===========================================================\n");
 	
 	printf("\nEnter your choice : ");
@@ -63,6 +65,10 @@ int main()
 			
 		case 6:
 			HEAD=delete_first(HEAD);
+			break;
+			
+		case 7:
+			HEAD=delete_last(HEAD);
 			break;
 			
 	}
@@ -188,5 +194,30 @@ node *delete_first(node *head)
 	
 	p=NULL;
 	printf("\nDelete first node Success!!");
+	return head;
+}
+
+node *delete_last(node *head)
+{
+	if(head==NULL)
+	{
+		free(head);
+		printf("\nDelete Failed Linked List is Empty");
+		return head;
+	}
+	if(head->next==NULL)
+	{
+		printf("\nDelete Success !!");
+		return head;
+	}
+	
+	node *p=head;
+	while(p->next->next!=NULL)
+	p=p->next;
+	
+	free(p->next);
+	p->next=NULL;
+	
+	printf("\nDelete Success for Last node");
 	return head;
 }
