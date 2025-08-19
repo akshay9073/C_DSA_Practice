@@ -10,10 +10,11 @@ node *create();
 node *cn();
 node *insert_first(node *,int);
 node *insert_last(node *,int);
+node *insert_between(node *,int,int);
 void display(node *);
 int main()
 {
-	int choice,x;
+	int choice,x,pos;
 	node *HEAD=NULL;
 	
 	while(1)
@@ -23,6 +24,7 @@ int main()
 		printf("\n 2)Display a SLL");
 		printf("\n 3)Insert at First");
 		printf("\n 4)Insert at Last");
+		printf("\n 5)Insert at Between");
 		printf("\n===========================================================\n");
 	
 	printf("\nEnter your choice : ");
@@ -51,8 +53,14 @@ int main()
 			HEAD=insert_last(HEAD,x);
 			break;
 			
+		case 5:
+			printf("\nEnter the position and data to insert : ");
+			scanf("%d %d",&pos,&x);
+			HEAD=insert_between(HEAD,pos,x);
+			break;
+			
 	}
-	}
+}
 	
 }
 
@@ -63,7 +71,7 @@ node *cn()
 
 node *create()
 {
-	int x,n;
+	int x,n,pos;
 	node *head=NULL,*p,*q;
 	
 	printf("\nEnter how many nodes you want? : ");
@@ -134,5 +142,26 @@ node *insert_last(node *head,int x)
 	p->next=q;
 	
 	printf("\nInsert Last Success");
+	return head;
+}
+
+node *insert_between(node *head,int pos,int x)
+{
+	node *p,*q;
+	p=head;
+	
+	int i=1;
+	while(i<pos-1)
+	{
+		p=p->next;
+		i++;
+	}
+	
+	q=cn();
+	q->data=x;
+	q->next=p->next;
+	p->next=q;
+	
+	printf("\nInsert at positon %d success !!!",pos);
 	return head;
 }
