@@ -8,7 +8,8 @@ typedef struct node
 }node;
 node *create();
 node *cn();
-node *insert_first();
+node *insert_first(node *,int);
+node *insert_last(node *,int);
 void display(node *);
 int main()
 {
@@ -21,10 +22,11 @@ int main()
 		printf("\n 1)Create a SLL");
 		printf("\n 2)Display a SLL");
 		printf("\n 3)Insert at First");
+		printf("\n 4)Insert at Last");
 		printf("\n===========================================================\n");
 	
 	printf("\nEnter your choice : ");
-	scanf("%d",&choice);
+	scanf(" %d",&choice);
 	
 	switch(choice)
 	{
@@ -38,9 +40,15 @@ int main()
 			break;
 			
 		case 3:
-			printf("\nEnter the Data to insert");
+			printf("\nEnter the Data to insert : ");
 			scanf("%d",&x);
 			HEAD=insert_first(HEAD,x);
+			break;
+			
+		case 4:
+			printf("\nEnter the Data to insert : ");
+			scanf(" %d",&x);
+			HEAD=insert_last(HEAD,x);
 			break;
 			
 	}
@@ -110,4 +118,21 @@ node *insert_first(node *head,int x)
 	
 	printf("\nNode Insert at first success!!");
 	return p;
+}
+
+node *insert_last(node *head,int x)
+{
+	node *p=head;
+	while(p->next!=NULL)
+	p=p->next;
+	
+	node *q;
+	q=cn();
+	q->data=x;
+	q->next=NULL;
+	
+	p->next=q;
+	
+	printf("\nInsert Last Success");
+	return head;
 }
