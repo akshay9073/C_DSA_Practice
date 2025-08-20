@@ -14,9 +14,12 @@ node *insert_between(node *,int,int);
 node *delete_first(node *);
 node *delete_last(node *);
 void display(node *);
+node *delete_between(node *,int);
+int count_nodes(node *);
+int search_data(node *,int);
 int main()
 {
-	int choice,x,pos;
+	int choice,x,pos,count;
 	node *HEAD=NULL;
 	
 	while(1)
@@ -29,6 +32,9 @@ int main()
 		printf("\n 5)Insert at Between");
 		printf("\n 6)Delete first Node in SLL");
 		printf("\n 7)Delete Last Node");
+		printf("\n 8)Delete any Node in the List");
+		printf("\n 9)Count Nodes ");
+		printf("\n 10)Search the node");
 		printf("\n===========================================================\n");
 	
 	printf("\nEnter your choice : ");
@@ -69,6 +75,27 @@ int main()
 			
 		case 7:
 			HEAD=delete_last(HEAD);
+			break;
+			
+		case 8:
+			printf("\nEnter the position to delete : ");
+			scanf("%d",&pos);
+			HEAD=delete_between(HEAD,pos);
+			break;
+			
+		case 9:
+			count=count_nodes(HEAD);
+			printf("\nTotal Nodes in this List : %d ",count);
+			break;
+			
+		case 10:
+			printf("\nEnter the data to search : ");
+			scanf("%d",&x);
+			count=search_data(HEAD,x);
+			if(count)
+			printf("\n %d data found at node : %d",x,count);
+			else
+			printf("\n%d data not found in linked list ",x);
 			break;
 			
 	}
@@ -232,4 +259,55 @@ node *delete_last(node *head)
 	
 	printf("\nDelete Success for Last node");
 	return head;
+}
+
+node *delete_between(node *head,int pos)
+{
+	node *p,*q;
+	
+	p=head;
+	
+	int i=1;
+	while(i<pos-1)
+	{
+		p=p->next;
+		i++;
+	}
+	q=p->next;
+	p->next=q->next;
+	free(q);
+	q=NULL;
+	printf("\nDelete at postion %d sucess !!",pos);
+	return head;
+}
+
+int count_nodes(node *head)
+{
+	 node *p=head;
+	 int count=0;
+	 while(p!=NULL)
+	 {
+	 	p=p->next;
+	 	count++;
+	 }
+	 return count ;
+}
+
+int search_data(node *head,int data)
+{
+	node *p;
+	p=head;
+	
+	int count=0;
+	
+	while(p!=NULL)
+	{
+		count++;
+		if(p->data==data)
+		return count;
+		
+		p=p->next;
+	}
+	
+	return 0;
 }
