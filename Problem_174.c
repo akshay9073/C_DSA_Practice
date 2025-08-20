@@ -18,6 +18,7 @@ node *delete_between(node *,int);
 int count_nodes(node *);
 int search_data(node *,int);
 int update_node(node *,int);
+node *delete_duplicate(node *);
 int main()
 {
 	int choice,x,pos,count;
@@ -37,6 +38,7 @@ int main()
 		printf("\n 9)Count Nodes ");
 		printf("\n 10)Search the node");
 		printf("\n 11)Update a node");
+		printf("\n 12)Delete Duplicate Node");
 		printf("\n===========================================================\n");
 	
 	printf("\nEnter your choice : ");
@@ -103,8 +105,15 @@ int main()
 		case 11:
 			printf("\nEnter the node you want to update : ");
 			scanf("%d",&x);
-			update_node(HEAD,x);
+			if(!(update_node(HEAD,x)))
 			printf("\nNode update Success!!");
+			else
+			printf("\nNode update failed");
+			break;
+			
+		case 12:
+			HEAD=delete_duplicate(HEAD);
+			printf("\nDeleted Duplicate");
 			break;
 			
 	}
@@ -323,6 +332,12 @@ int search_data(node *head,int data)
 
 int update_node(node *head,int x)
 {
+	
+	if(x<=0)
+	{
+		printf("\nPosition entered is incorrect");
+		return -1;
+	}
 	node *p;
 	p=head;
 	
@@ -336,4 +351,34 @@ int update_node(node *head,int x)
 		scanf("%d",&d);
 		p->data=d;
 	return 0;
+}
+
+node *delete_duplicate(node *head)
+{
+	
+	node *p,*q,*r;
+	p=head;
+	
+	while(p!=NULL)
+	{
+		r=p;
+		q=p->next;
+		
+		while(q!=NULL)
+		{
+			if(p->data==q->data)
+			{
+				r->next=q->next;
+				free(q);
+				q=r->next;
+			}
+			else
+			{
+				r=q;
+				q=q->next;
+			}
+		}
+		p=p->next;
+	}
+	return head;
 }
