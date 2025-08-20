@@ -17,6 +17,7 @@ void display(node *);
 node *delete_between(node *,int);
 int count_nodes(node *);
 int search_data(node *,int);
+int update_node(node *,int);
 int main()
 {
 	int choice,x,pos,count;
@@ -35,6 +36,7 @@ int main()
 		printf("\n 8)Delete any Node in the List");
 		printf("\n 9)Count Nodes ");
 		printf("\n 10)Search the node");
+		printf("\n 11)Update a node");
 		printf("\n===========================================================\n");
 	
 	printf("\nEnter your choice : ");
@@ -96,6 +98,13 @@ int main()
 			printf("\n %d data found at node : %d",x,count);
 			else
 			printf("\n%d data not found in linked list ",x);
+			break;
+		
+		case 11:
+			printf("\nEnter the node you want to update : ");
+			scanf("%d",&x);
+			update_node(HEAD,x);
+			printf("\nNode update Success!!");
 			break;
 			
 	}
@@ -309,5 +318,22 @@ int search_data(node *head,int data)
 		p=p->next;
 	}
 	
+	return 0;
+}
+
+int update_node(node *head,int x)
+{
+	node *p;
+	p=head;
+	
+	int i=0,d;
+	while(i<x-1)
+	{
+		p=p->next;
+		i++;
+	}
+			printf("\nEnter the data to update the node : ");
+		scanf("%d",&d);
+		p->data=d;
 	return 0;
 }
