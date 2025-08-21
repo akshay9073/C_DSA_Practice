@@ -23,6 +23,7 @@ node *delete_duplicate_sorted(node *);
 int check_sorted(node *);
 node *sort_list(node *);
 node *sort_list_i(node *);
+node *reverse_list(node *);
 int main()
 {
 	int choice,x,pos,count;
@@ -47,6 +48,7 @@ int main()
 		printf("\n 14)Check if linked list is sorted(increasily or decreasingly)");
 		printf("\n 15)Sorting a List(decreasing order)");
 		printf("\n 16)Sorting a List(increasing order)");
+		printf("\n 17)Reverse a Linked List");
 		printf("\n=========================================================================================================\n");
 	
 	printf("\nEnter your choice : ");
@@ -144,6 +146,11 @@ int main()
 		case 16:
 			HEAD=sort_list_i(HEAD);
 			printf("\nList Sorting Success !!");
+			break;
+			
+		case 17:
+			HEAD=reverse_list(HEAD);
+			printf("\nLinked List Reverse Success !!");
 			break;
 			
 	}
@@ -512,4 +519,20 @@ node *sort_list_i(node *head)
 	return head;
 }
 
-
+node *reverse_list(node *head)
+{
+	node *p,*q,*r;
+	
+	p=NULL;
+	r=NULL;
+	q=head;
+	while(q!=NULL)
+	{
+		r=q->next;
+		q->next=p;
+		p=q;
+		q=r;
+	}
+	
+	return p;
+}
