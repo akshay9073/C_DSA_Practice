@@ -19,6 +19,7 @@ int count_nodes(node *);
 int search_data(node *,int);
 int update_node(node *,int);
 node *delete_duplicate(node *);
+node *delete_duplicate_sorted(node *);
 int main()
 {
 	int choice,x,pos,count;
@@ -39,6 +40,7 @@ int main()
 		printf("\n 10)Search the node");
 		printf("\n 11)Update a node");
 		printf("\n 12)Delete Duplicate Node");
+		printf("\n 13)Delete Duplicate in Sorted SLL");
 		printf("\n===========================================================\n");
 	
 	printf("\nEnter your choice : ");
@@ -114,6 +116,11 @@ int main()
 		case 12:
 			HEAD=delete_duplicate(HEAD);
 			printf("\nDeleted Duplicate");
+			break;
+			
+		case 13:
+			HEAD=delete_duplicate_sorted(HEAD);
+			printf("\nDelete Duplicate Success!!");
 			break;
 			
 	}
@@ -378,6 +385,24 @@ node *delete_duplicate(node *head)
 				q=q->next;
 			}
 		}
+		p=p->next;
+	}
+	return head;
+}
+
+node *delete_duplicate_sorted(node *head)
+{
+	node *p=head;
+	
+	while(p->next!=NULL)
+	{
+		if(p->data==p->next->data)
+		{
+			node *temp=p->next;
+			p->next=temp->next;
+			free(temp);
+		}
+		else
 		p=p->next;
 	}
 	return head;
