@@ -20,6 +20,7 @@ int search_data(node *,int);
 int update_node(node *,int);
 node *delete_duplicate(node *);
 node *delete_duplicate_sorted(node *);
+int check_sorted(node *);
 int main()
 {
 	int choice,x,pos,count;
@@ -41,6 +42,7 @@ int main()
 		printf("\n 11)Update a node");
 		printf("\n 12)Delete Duplicate Node");
 		printf("\n 13)Delete Duplicate in Sorted SLL");
+		printf("\n 14)Check if linked list is sorted(increasily or decreasingly)");
 		printf("\n===========================================================\n");
 	
 	printf("\nEnter your choice : ");
@@ -121,6 +123,13 @@ int main()
 		case 13:
 			HEAD=delete_duplicate_sorted(HEAD);
 			printf("\nDelete Duplicate Success!!");
+			break;
+			
+		case 14:
+			if(check_sorted(HEAD))
+			printf("\nLinked List is sorted!!");
+			else
+			printf("\nLinked List is not sorted!!");
 			break;
 			
 	}
@@ -406,4 +415,40 @@ node *delete_duplicate_sorted(node *head)
 		p=p->next;
 	}
 	return head;
+}
+
+int check_sorted(node *head)
+{
+	node *p=head;
+	int order=0;
+	while(p!=NULL&& p->next!=NULL)
+	{
+		if(p->data<p->next->data)
+		{
+			order=1;
+			break;
+		}
+		else if(p->data>p->next->data)
+		{
+			order=-1;
+			break;
+		}
+		p=p->next;
+	}
+	
+	p=head;
+	
+	while(p!=NULL && p->next!=NULL)
+	{
+		if(order==1 && p->data>p->next->data)
+		return 0;
+		
+		if(order==-1 && p->data<p->next->data)
+		return 0;
+		
+		p=p->next;
+	}
+	
+	return 1;
+	
 }
