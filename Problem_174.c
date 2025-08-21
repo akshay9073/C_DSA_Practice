@@ -21,6 +21,8 @@ int update_node(node *,int);
 node *delete_duplicate(node *);
 node *delete_duplicate_sorted(node *);
 int check_sorted(node *);
+node *sort_list(node *);
+
 int main()
 {
 	int choice,x,pos,count;
@@ -28,7 +30,7 @@ int main()
 	
 	while(1)
 	{
-		printf("\n===========================================================\n");
+		printf("\n=========================================================================================================\n");
 		printf("\n 1)Create a SLL");
 		printf("\n 2)Display a SLL");
 		printf("\n 3)Insert at First");
@@ -43,7 +45,8 @@ int main()
 		printf("\n 12)Delete Duplicate Node");
 		printf("\n 13)Delete Duplicate in Sorted SLL");
 		printf("\n 14)Check if linked list is sorted(increasily or decreasingly)");
-		printf("\n===========================================================\n");
+		printf("\n 15)Sorting a List(decreasing order)");
+		printf("\n=========================================================================================================\n");
 	
 	printf("\nEnter your choice : ");
 	scanf(" %d",&choice);
@@ -130,6 +133,11 @@ int main()
 			printf("\nLinked List is sorted!!");
 			else
 			printf("\nLinked List is not sorted!!");
+			break;
+			
+		case 15:
+			HEAD=sort_list(HEAD);
+			printf("\nList Sorting Success!!");
 			break;
 			
 	}
@@ -449,6 +457,28 @@ int check_sorted(node *head)
 		p=p->next;
 	}
 	
-	return 1;
+	return 1;	
+}
+
+node *sort_list(node *head)
+{
+	node *p=head;
+	node *q;
+	while(p->next!=NULL)
+	{
+		q=p->next;
+		while(q!=NULL)
+		{
+		if(p->data<q->data)
+		{
+			int temp=p->data;
+			p->data=q->data;
+			q->data=temp;
+		}
+		q=q->next;
+	}
+	p=p->next;
+	}
 	
+	return head;
 }
