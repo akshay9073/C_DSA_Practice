@@ -25,6 +25,7 @@ node *sort_list(node *);
 node *sort_list_i(node *);
 node *reverse_list(node *);
 node *merge_list(node *,node *);
+node *union_list(node *,node *);
 int main()
 {
 	int choice,x,pos,count;
@@ -51,6 +52,7 @@ int main()
 		printf("\n 16)Sorting a List(increasing order)");
 		printf("\n 17)Reverse a Linked List");
 		printf("\n 18)Merge two Linked List");
+		printf("\n 19)Union of Linked List");
 		printf("\n=========================================================================================================\n");
 	
 	printf("\nEnter your choice : ");
@@ -166,6 +168,19 @@ int main()
 			printf("\nLinked List Merged\n");
 			display(HEAD);
 			
+			break;
+			
+		case 19:
+			printf("\nAccept Linked List-1");
+			HEAD1=create();
+			
+			printf("\nAccept Linked List-2");
+			HEAD2=create();
+			
+			HEAD=union_list(HEAD1,HEAD2);
+			printf("\nDisplay Union Linked List\n");
+			
+			display(HEAD);
 			break;
 	}
 }
@@ -594,3 +609,17 @@ node *merge_list(node *head1,node *head2)
 	
 	return head3;
 }
+
+node *union_list(node *head1,node *head2)
+{
+	node *head3;
+	
+	node *h1=delete_duplicate(head1);
+	node *h2=delete_duplicate(head2);
+	
+	head3=merge_list(h1,h2);
+	head3=delete_duplicate(head3);
+	return head3;
+}
+
+
