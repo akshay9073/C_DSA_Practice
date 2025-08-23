@@ -27,6 +27,7 @@ node *reverse_list(node *);
 node *merge_list(node *,node *);
 node *union_list(node *,node *);
 node *intersection_sll(node *,node *);
+node *difference_sll(node *,node *);
 int main()
 {
 	int choice,x,pos,count;
@@ -55,6 +56,8 @@ int main()
 		printf("\n 18)Merge two Linked List");
 		printf("\n 19)Union of Linked List");
 		printf("\n 20)Intersection of Linked List");
+		printf("\n 21)Difference of Linked List List-1 - List2");
+		printf("\n 22)Difference of Linked List List-2-List1");
 		printf("\n=========================================================================================================\n");
 	
 	printf("\nEnter your choice : ");
@@ -200,6 +203,44 @@ int main()
 
                 HEAD3 = intersection_sll(HEAD1,HEAD2);
                 printf("\nDisplay Intersection SLL3 = SLL1 n SLL2\n");
+                display(HEAD3);
+
+                break;
+                
+        case 21:
+			    printf("\nAccept SLL 1");
+                HEAD1 = create();
+
+                printf("\nAccept SLL 2");
+                HEAD2 = create();
+
+                printf("\nDisplay SLL1\n");
+                display(HEAD1);
+
+                printf("\nDisplay SLL2\n");
+                display(HEAD2);
+
+                HEAD3 = difference_sll(HEAD1,HEAD2);
+                printf("\nDisplay Difference SLL3 = SLL1 - SLL2\n");
+                display(HEAD3);
+
+                break;
+                
+        case 22:
+			    printf("\nAccept SLL 1");
+                HEAD1 = create();
+
+                printf("\nAccept SLL 2");
+                HEAD2 = create();
+
+                printf("\nDisplay SLL1\n");
+                display(HEAD1);
+
+                printf("\nDisplay SLL2\n");
+                display(HEAD2);
+
+                HEAD3 = difference_sll(HEAD2,HEAD1);
+                printf("\nDisplay Difference SLL3 = SLL1 - SLL2\n");
                 display(HEAD3);
 
                 break;
@@ -685,4 +726,49 @@ node *intersection_sll(node *head1,node *head2)
 }
 
 
-
+node *difference_sll(node *head1,node *head2)
+{
+	node *head3=NULL,*p1,*q1,*p,*q;
+	
+	head1=delete_duplicate(head1);
+	head2=delete_duplicate(head2);
+	
+	p1=head1;
+	int flag=0;
+	while(p1!=NULL)
+	{
+		q1=head2;
+		flag=0;
+		
+		while(q1!=NULL)
+		{
+			if(p1->data==q1->data)
+			{
+				flag=1;
+				break;
+			}
+			q1=q1->next;
+		}
+		
+		if(flag==0)
+		{
+			if(head3==NULL)
+			{
+				head3=cn();
+				head3->data=p1->data;
+				head3->next=NULL;
+				p=head3;
+			}
+			else
+			{
+				q=cn();
+				q->data=p1->data;
+				q->next=NULL;
+				p->next=q;
+				p=p->next;
+			}
+		}
+		p1=p1->next;
+	}
+	return head3;
+}
