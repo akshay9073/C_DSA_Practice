@@ -28,6 +28,7 @@ node *merge_list(node *,node *);
 node *union_list(node *,node *);
 node *intersection_sll(node *,node *);
 node *difference_sll(node *,node *);
+node *skip_node(node *);
 int main()
 {
 	int choice,x,pos,count;
@@ -58,6 +59,7 @@ int main()
 		printf("\n 20)Intersection of Linked List");
 		printf("\n 21)Difference of Linked List List-1 - List2");
 		printf("\n 22)Difference of Linked List List-2-List1");
+		printf("\n 23)Skip Node");
 		printf("\n=========================================================================================================\n");
 	
 	printf("\nEnter your choice : ");
@@ -244,7 +246,11 @@ int main()
                 display(HEAD3);
 
                 break;
-
+                
+        case 23:
+        	printf("\nSkip a node !!");
+        	HEAD=skip_node(HEAD);
+        	break;
 	}
 }
 	
@@ -771,4 +777,35 @@ node *difference_sll(node *head1,node *head2)
 		p1=p1->next;
 	}
 	return head3;
+}
+
+node *skip_node(node *head)
+{
+	node *p,*q;
+	
+	if(head==NULL || head->next==NULL)
+	return head;
+	
+	if(head->next->next==NULL)
+	{
+		p=head->next;
+		head->next=NULL;
+		free(p);
+		return head;
+	}
+	
+	p=head;
+	
+	while(p->next!=NULL)
+	{
+		q=p->next;
+		p->next=q->next;
+		free(q);
+		
+		if(p->next==NULL)
+		return head;
+		
+		p=p->next;
+	}
+	return head;
 }
