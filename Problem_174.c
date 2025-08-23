@@ -26,6 +26,7 @@ node *sort_list_i(node *);
 node *reverse_list(node *);
 node *merge_list(node *,node *);
 node *union_list(node *,node *);
+node *intersection_sll(node *,node *);
 int main()
 {
 	int choice,x,pos,count;
@@ -53,6 +54,7 @@ int main()
 		printf("\n 17)Reverse a Linked List");
 		printf("\n 18)Merge two Linked List");
 		printf("\n 19)Union of Linked List");
+		printf("\n 20)Intersection of Linked List");
 		printf("\n=========================================================================================================\n");
 	
 	printf("\nEnter your choice : ");
@@ -182,6 +184,26 @@ int main()
 			
 			display(HEAD);
 			break;
+			
+		case 20:
+			    printf("\nAccept SLL 1");
+                HEAD1 = create();
+
+                printf("\nAccept SLL 2");
+                HEAD2 = create();
+
+                printf("\nDisplay SLL1\n");
+                display(HEAD1);
+
+                printf("\nDisplay SLL2\n");
+                display(HEAD2);
+
+                HEAD3 = intersection_sll(HEAD1,HEAD2);
+                printf("\nDisplay Intersection SLL3 = SLL1 n SLL2\n");
+                display(HEAD3);
+
+                break;
+
 	}
 }
 	
@@ -621,5 +643,46 @@ node *union_list(node *head1,node *head2)
 	head3=delete_duplicate(head3);
 	return head3;
 }
+
+node *intersection_sll(node *head1,node *head2)
+{
+    node *head3 = NULL ,*p,*q,*p3,*q3;
+    head1 = delete_duplicate(head1);
+    head2 = delete_duplicate(head2);
+    p = head1;
+
+
+    while(p != NULL)
+    {
+        q = head2;
+        while(q!=NULL)
+        {
+            if(p->data == q->data)//10==10
+            {
+                if(head3==NULL)
+                {
+                    head3 = cn();
+                    head3->data = p->data;
+                    head3->next = NULL;
+                    p3=head3;
+                    break;
+                }
+                else
+                {
+                    q3 = cn();
+                    q3->data = p->data ;
+                    q3->next = NULL ;
+                    p3->next = q3;
+                    p3 = p3->next;
+                    break;
+                }
+            }
+            q=q->next;
+        }
+        p=p->next;
+    }
+    return head3;
+}
+
 
 
