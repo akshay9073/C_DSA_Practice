@@ -33,7 +33,12 @@ int main()
 				printf("\nCreate a linked list\n");
 				HEAD=create();
 				break;
-			
+				
+			case 2:
+				printf("\nLinked List is : ");
+				display(HEAD);
+				break;	
+				
 		}
 	}
 }
@@ -77,6 +82,25 @@ node *create()
 		i++;
 	}
 	return head;
+}
+void display(node *head)
+{
+	
+	node *p;
+	p=head;
+	if(p==NULL)
+	{
+		printf("\nLinked List is empty");
+	}
+	else
+	{
+		while(p->next!=head)
+		{
+			printf("%d\t",p->data);
+			p=p->next;
+		}
+		printf("%d\t",p->data);
+	}
 }
 
 
