@@ -1,5 +1,5 @@
 #include<stdio.h>
-
+#include<stdlib.h>
 typedef struct node{
 	
 	int data;
@@ -15,6 +15,7 @@ node *insert_pos(node *,int);
 node *delete_first(node *);
 node *delete_last(node *);
 node *delete_pos(node *,int);
+
 int main()
 {
 	node *HEAD=NULL;
@@ -254,6 +255,27 @@ return head;
 node *delete_pos(node *head,int x)
 {
 	node *p=head;
+	
+	if(x==1)
+	{
+		
+		if(head->next==head)
+		{
+			free(head);
+			return NULL;
+		}
+		
+		node *q=head;
+		while(q->next!=head)
+		{
+				q=q->next;
+		}
+			node *temp=head;
+			head=head->next;
+			free(temp);
+			q->next=head;
+		return head;
+	}
 	
 	int i=1;
 	while(i<x-1)
