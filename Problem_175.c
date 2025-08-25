@@ -6,16 +6,18 @@ typedef struct node{
 	struct node *next;
 }node;
 
-
 node *cn();
 node *create();
 void display(node *);
 node *insert_first(node *);
 node *insert_last(node *);
+node *insert_pos(node *,int);
+node *delete_first(node *);
+node *delete_last(node *);
 int main()
 {
 	node *HEAD=NULL;
-	int choice,x;
+	int choice,x,pos;
 	
 	while(1)
 	{
@@ -24,6 +26,9 @@ int main()
 		printf("\n 2)Display Linked List");
 		printf("\n 3)Insert at First");
 		printf("\n 4)Insert at Last");
+		printf("\n 5)Insert at any position");
+		printf("\n 6)Delete first node");
+		printf("\n 7)Delete last node");
 		printf("\n===================================================================================================\n");
 	
 		printf("\nEnter your choice : ");
@@ -50,7 +55,24 @@ int main()
 				HEAD=insert_last(HEAD);
 				printf("\nInsert Last Success!!");
 				break;
-
+				
+			case 5:
+				printf("\nEnter the position to insert data at : ");
+				scanf("%d",&x);
+				HEAD=insert_pos(HEAD,x);
+				printf("\nInsert Success !!");
+				break;
+				
+			case 6:
+				HEAD=delete_first(HEAD);
+				printf("\nDelete Success!!");
+				break;
+				
+			case 7:
+				HEAD=delete_last(HEAD);
+				printf("\nDelete Success !!");
+				break;
+				
 		}
 	}
 }
@@ -165,4 +187,57 @@ node *insert_last(node *head)
 	return head;
 }
 
+node *insert_pos(node *head,int x)
+{
+	node *p,*q;
+	
+	p=head;
+	
+	int i=1;
+	while(i<x-1)
+	{
+		p=p->next;
+		i++;
+	}
+	
+	int d;
+	q=cn();
+	printf("\nEnter data : ");
+	scanf("%d",&d);
+	q->data=d;
+	q->next=p->next;
+	p->next=q;
+	
+	return head;
+}
 
+node *delete_first(node *head)
+{
+	node *p=head;
+	node *q=head;
+	while(p->next!=head)
+	{
+		p=p->next;
+	}
+	head=q->next;
+	free(q);
+	p->next=head;
+
+	return head;
+}
+
+node *delete_last(node *head)
+{
+
+node *p=head;
+
+while(p->next->next!=head)
+{
+	p=p->next;
+}
+free(p->next);
+p->next=head;
+
+return head;
+	
+}
