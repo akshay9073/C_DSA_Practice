@@ -267,3 +267,5 @@ node *delete_pos(node *head,int x)
 	
 	return head;
 }
+
+
