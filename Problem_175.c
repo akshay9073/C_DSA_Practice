@@ -15,11 +15,11 @@ node *insert_pos(node *,int);
 node *delete_first(node *);
 node *delete_last(node *);
 node *delete_pos(node *,int);
-
+int count_nodes(node *head);
 int main()
 {
 	node *HEAD=NULL;
-	int choice,x,pos;
+	int choice,x,pos,count;
 	
 	while(1)
 	{
@@ -32,6 +32,7 @@ int main()
 		printf("\n 6)Delete first node");
 		printf("\n 7)Delete last node");
 		printf("\n 8)Delete at Position");
+		printf("\n 9)Count Nodes");
 		printf("\n===================================================================================================\n");
 	
 		printf("\nEnter your choice : ");
@@ -81,6 +82,11 @@ int main()
 				scanf("%d",&x);
 				HEAD=delete_pos(HEAD,x);
 				printf("\n Delete Success!!");
+				break;
+				
+			case 9:
+				count=count_nodes(HEAD);
+				printf("\nLinked List have : %d nodes",count);
 				break;
 				
 		}
@@ -290,4 +296,15 @@ node *delete_pos(node *head,int x)
 	return head;
 }
 
-
+int count_nodes(node *head)
+{
+	int count=0;
+	node *p=head;
+	
+	do
+	{
+		count++;
+		p=p->next;
+	}while(p!=head);
+	return count;
+}
