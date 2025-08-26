@@ -16,6 +16,7 @@ node *delete_first(node *);
 node *delete_last(node *);
 node *delete_pos(node *,int);
 int count_nodes(node *head);
+node *delete_duplicate(node *);
 int main()
 {
 	node *HEAD=NULL;
@@ -33,6 +34,7 @@ int main()
 		printf("\n 7)Delete last node");
 		printf("\n 8)Delete at Position");
 		printf("\n 9)Count Nodes");
+		printf("\n 10)Delete Duplicate");
 		printf("\n===================================================================================================\n");
 	
 		printf("\nEnter your choice : ");
@@ -87,6 +89,11 @@ int main()
 			case 9:
 				count=count_nodes(HEAD);
 				printf("\nLinked List have : %d nodes",count);
+				break;
+				
+			case 10:
+				HEAD=delete_duplicate(HEAD);
+				printf("\nDelete Duplicate Success!!");
 				break;
 				
 		}
@@ -310,4 +317,38 @@ int count_nodes(node *head)
 		p=p->next;
 	}while(p!=head);
 	return count;
+}
+
+node *delete_duplicate(node *head)
+{
+	node *p,*q,*r;
+	
+	p=head;
+	
+	while(p->next!=head)
+	{
+		q=p->next;
+		r=p;
+		while(q->next!=head)
+		{
+			if(p->data==q->data)
+			{
+				r->next=q->next;
+				free(q);
+				q=r->next;
+			}
+			else
+			{
+				r=q;
+				q=q->next;
+			}
+		}
+		if(p->data==q->data)
+		{
+			r->next=q->next;
+			free(q);
+		}
+		p=p->next;
+	}
+	return head;	
 }
