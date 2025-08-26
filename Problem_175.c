@@ -17,10 +17,11 @@ node *delete_last(node *);
 node *delete_pos(node *,int);
 int count_nodes(node *head);
 node *delete_duplicate(node *);
+int search_node(node *,int);
 int main()
 {
 	node *HEAD=NULL;
-	int choice,x,pos,count;
+	int choice,x,pos,count,index;
 	
 	while(1)
 	{
@@ -35,6 +36,7 @@ int main()
 		printf("\n 8)Delete at Position");
 		printf("\n 9)Count Nodes");
 		printf("\n 10)Delete Duplicate");
+		printf("\n 11)Search in Linked List");
 		printf("\n===================================================================================================\n");
 	
 		printf("\nEnter your choice : ");
@@ -95,6 +97,17 @@ int main()
 				HEAD=delete_duplicate(HEAD);
 				printf("\nDelete Duplicate Success!!");
 				break;
+				
+			case 11:
+				printf("\nEnter the element to search : ");
+				scanf("%d",&x);
+				index=search_node(HEAD,x);
+				if(index!=-1)
+				printf("\n%d element found at node %d",x,index);
+				else
+				printf("\n%d element not found at any node",x);
+				break;
+				
 				
 		}
 	}
@@ -351,4 +364,21 @@ node *delete_duplicate(node *head)
 		p=p->next;
 	}
 	return head;	
+}
+
+int search_node(node *head,int x)
+{
+	node *p=head;
+	int count=0;
+	do
+	{
+		count++;
+		if(p->data==x)
+		{
+			printf("\nelement search ");
+			return count;
+		}
+		p=p->next;
+	}while(p!=head);
+	return -1;
 }
