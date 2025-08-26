@@ -301,6 +301,9 @@ int count_nodes(node *head)
 	int count=0;
 	node *p=head;
 	
+	if(head==NULL)
+	return 0;
+	
 	do
 	{
 		count++;
