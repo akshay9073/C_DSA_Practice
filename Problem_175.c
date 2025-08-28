@@ -39,6 +39,7 @@ int main()
 		printf("\n 10)Delete Duplicate");
 		printf("\n 11)Search in Linked List");
 		printf("\n 12)Sort List");
+		printf("\n 13)Update the Node");
 		printf("\n===================================================================================================\n");
 	
 		printf("\nEnter your choice : ");
@@ -116,7 +117,12 @@ int main()
 				display(HEAD);
 				break;
 				
-				
+			case 13:
+				printf("\nEnter the node to update : ");
+				scanf("%d",&x);
+				update_node(HEAD,x);
+				printf("\nNode update Success !!");
+				break;
 		}
 	}
 }
@@ -412,4 +418,21 @@ node *sort_list(node *head)
 	}while(p!=head);
 	
 	return head;
+}
+
+void update_node(node *head,int x)
+{
+	node *p;
+	p=head;
+	int i=0;
+	
+	while(i<x-1)
+	{
+		p=p->next;
+		i++;
+	}
+	int d;
+	printf("\nEnter data to update : ");
+	scanf("%d",&d);
+	p->data=d;
 }
