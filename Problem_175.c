@@ -19,6 +19,8 @@ int count_nodes(node *head);
 node *delete_duplicate(node *);
 int search_node(node *,int);
 node *sort_list(node *);
+void update_node(node *,int);
+node *skip_list(node *);
 int main()
 {
 	node *HEAD=NULL;
@@ -40,6 +42,7 @@ int main()
 		printf("\n 11)Search in Linked List");
 		printf("\n 12)Sort List");
 		printf("\n 13)Update the Node");
+		printf("\n 14)Skip Linked List");
 		printf("\n===================================================================================================\n");
 	
 		printf("\nEnter your choice : ");
@@ -122,6 +125,11 @@ int main()
 				scanf("%d",&x);
 				update_node(HEAD,x);
 				printf("\nNode update Success !!");
+				break;
+				
+			case 14:
+				HEAD=skip_list(HEAD);
+				printf("\nNodes Skipped Success!!");
 				break;
 		}
 	}
@@ -435,4 +443,37 @@ void update_node(node *head,int x)
 	printf("\nEnter data to update : ");
 	scanf("%d",&d);
 	p->data=d;
+}
+
+node *skip_list(node *head)
+{
+		node *p,*q;
+		
+		if(head==NULL||head->next==head)
+		return head;
+		
+		if(head->next->next==head)
+		{
+			p=head->next;
+			free(p);
+			head->next=head;
+			return head;
+		}
+		
+		p=head;
+		while(p->next!=head)
+		{
+			q=p->next;
+			p->next=q->next;
+			free(q);
+			
+			if(p->next==head)
+			return head;
+			
+			if(p->next->next==head)
+			return head;
+			
+			p=p->next;
+		}
+		return head;
 }
