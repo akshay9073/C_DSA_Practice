@@ -43,6 +43,7 @@ int main()
 		printf("\n 12)Sort List");
 		printf("\n 13)Update the Node");
 		printf("\n 14)Skip Linked List");
+		printf("\n 15)Reverse a Linked List");
 		printf("\n===================================================================================================\n");
 	
 		printf("\nEnter your choice : ");
@@ -130,6 +131,11 @@ int main()
 			case 14:
 				HEAD=skip_list(HEAD);
 				printf("\nNodes Skipped Success!!");
+				break;
+				
+			case 15:
+				HEAD=reverse_list(HEAD);
+				printf("\nLinked List Reverse Success!!");
 				break;
 		}
 	}
@@ -476,4 +482,9 @@ node *skip_list(node *head)
 			p=p->next;
 		}
 		return head;
+}
+
+node *reverse_list(node *head)
+{
+	node *p,*q,*r;
 }
