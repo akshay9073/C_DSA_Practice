@@ -486,5 +486,27 @@ node *skip_list(node *head)
 
 node *reverse_list(node *head)
 {
-	node *p,*q,*r;
+	  if (!head || head->next == head) 
+        return head;  
+
+    node *prev = NULL, *curr = head, *next = NULL;
+    node* last = head;
+
+    
+    while (last->next != head)
+        last = last->next;
+
+    do {
+        next = curr->next;
+        curr->next = prev ? prev : head;  
+        prev = curr;
+        curr = next;
+    } while (curr != head);
+
+
+    head->next = prev;  
+    head = prev;        
+    last->next = head;  
+
+    return head;
 }
