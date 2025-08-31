@@ -21,6 +21,7 @@ int search_node(node *,int);
 node *sort_list(node *);
 void update_node(node *,int);
 node *skip_list(node *);
+node *reverse_list(node *);
 int main()
 {
 	node *HEAD=NULL;
@@ -489,24 +490,25 @@ node *reverse_list(node *head)
 	  if (!head || head->next == head) 
         return head;  
 
-    node *prev = NULL, *curr = head, *next = NULL;
-    node* last = head;
+node *p,*lasthead,*q;
+    p=head;
+    while(p->next!=head)
+        p=p->next;
 
-    
-    while (last->next != head)
-        last = last->next;
+    lasthead=q=p;
+    p=head;
 
-    do {
-        next = curr->next;
-        curr->next = prev ? prev : head;  
-        prev = curr;
-        curr = next;
-    } while (curr != head);
+    while(p->next!=q)
+    {
+        while(p->next!=q)
+            p=p->next;
+        q->next=p;
+        q=p;
+        p=head;
+    }
 
+    q->next = head;
+    p->next=lasthead;
+    return lasthead;
 
-    head->next = prev;  
-    head = prev;        
-    last->next = head;  
-
-    return head;
 }
