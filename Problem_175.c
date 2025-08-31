@@ -22,9 +22,11 @@ node *sort_list(node *);
 void update_node(node *,int);
 node *skip_list(node *);
 node *reverse_list(node *);
+node *merge_list(node *,node *);
 int main()
 {
 	node *HEAD=NULL;
+	node *HEAD1,*HEAD2;
 	int choice,x,pos,count,index;
 	
 	while(1)
@@ -45,6 +47,7 @@ int main()
 		printf("\n 13)Update the Node");
 		printf("\n 14)Skip Linked List");
 		printf("\n 15)Reverse a Linked List");
+		printf("\n 16)Merge Linked List");
 		printf("\n===================================================================================================\n");
 	
 		printf("\nEnter your choice : ");
@@ -137,6 +140,17 @@ int main()
 			case 15:
 				HEAD=reverse_list(HEAD);
 				printf("\nLinked List Reverse Success!!");
+				break;
+				
+			case 16:
+				printf("\nAccept Linked List-1");
+				HEAD1=create();
+				
+				printf("\nAccept Linked List-2");
+				HEAD2=create();
+				
+				HEAD=merge_list(HEAD1,HEAD2);
+				printf("\nMerge List Success!!");
 				break;
 		}
 	}
@@ -511,4 +525,33 @@ node *p,*lasthead,*q;
     p->next=lasthead;
     return lasthead;
 
+}
+
+node *merge_list(node *head1,node *head2)
+{
+	node *head3=NULL,*p3,*q3;
+	
+	node *p1=head1;
+	node *p2=head2;
+	
+	while(p1->next!=head1)
+	{
+		if(head3==NULL)
+		{
+			head3=cn();
+			head3->data=p1->data;
+			head3->next=head3;
+			p3=head3;
+		}
+		else
+		{
+			q3=cn();
+			q3->data=p1->data;
+			q3->next=head3;
+			p3->next=q3;
+			p3=p3->next;
+		}
+		p1=p1->next;
+	}
+	return head3;
 }
