@@ -529,29 +529,69 @@ node *p,*lasthead,*q;
 
 node *merge_list(node *head1,node *head2)
 {
-	node *head3=NULL,*p3,*q3;
-	
-	node *p1=head1;
-	node *p2=head2;
-	
-	while(p1->next!=head1)
-	{
-		if(head3==NULL)
-		{
-			head3=cn();
-			head3->data=p1->data;
-			head3->next=head3;
-			p3=head3;
-		}
-		else
-		{
-			q3=cn();
-			q3->data=p1->data;
-			q3->next=head3;
-			p3->next=q3;
-			p3=p3->next;
-		}
-		p1=p1->next;
-	}
-	return head3;
+	node *head3=NULL , *p3 , *q3;
+    node *p1,*p2;
+
+    p1=head1;
+    p2=head2;
+
+    if(head1==NULL)
+        return head2;
+
+    if(head2==NULL)
+        return head1;
+
+    while(p1->next!=head1)
+    {
+        if(head3==NULL)
+        {
+           head3 =cn();
+           head3->data = p1->data;
+           head3->next=head3;
+           p3 = head3;
+        }
+        else
+        {
+            q3=cn();
+            q3->data=p1->data;
+            q3->next=head3;
+            p3->next=q3;
+            p3 = p3->next;
+        }
+        p1=p1->next;
+    }
+    //Remaining 1 Node & only 1  Node
+    if(head3==NULL)
+    {
+        head3 =cn();
+        head3->data = p1->data;
+        head3->next=head3;
+        p3 = head3;
+    }
+    else
+    {
+        q3=cn();
+        q3->data=p1->data;
+        q3->next=head3;
+        p3->next=q3;
+        p3 = p3->next;
+    }
+
+    while(p2->next!=head2)
+    {
+        q3=cn();
+        q3->data=p2->data;
+        q3->next=head3;
+        p3->next=q3;
+        p3 = p3->next;
+        p2=p2->next;
+    }
+    q3=cn();
+    q3->data=p2->data;
+    q3->next=head3;
+    p3->next=q3;
+    p3 = p3->next;
+
+    return head3;
+
 }
