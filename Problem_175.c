@@ -48,6 +48,7 @@ int main()
 		printf("\n 14)Skip Linked List");
 		printf("\n 15)Reverse a Linked List");
 		printf("\n 16)Merge Linked List");
+		printf("\n 17)Merge & Sort List");
 		printf("\n===================================================================================================\n");
 	
 		printf("\nEnter your choice : ");
@@ -152,6 +153,17 @@ int main()
 				HEAD=merge_list(HEAD1,HEAD2);
 				printf("\nMerge List Success!!");
 				break;
+				
+			case 17:
+				printf("\nAccept Linked List-1");
+				HEAD1=create();
+				
+				printf("\nAccept Linked List-2");
+				HEAD2=create();
+				
+				HEAD=merge_sort_list(HEAD1,HEAD2);
+				printf("\nMerge & Sort List Success!!");
+				break;	
 		}
 	}
 }
