@@ -26,6 +26,7 @@ node *merge_list(node *,node *);
 node *merge_sort_list(node *,node *);
 node *sort_list_fun(node *);
 node *union_list(node *,node *);
+node *intersection_list(node *,node *);
 int main()
 {
 	node *HEAD=NULL;
@@ -54,6 +55,7 @@ int main()
 		printf("\n 17)Merge & Sort List");
 		printf("\n 18)Sort List");
 		printf("\n 19)Union of Linked List");
+		printf("\n 20)Intersection of Linked List");
 		printf("\n===================================================================================================\n");
 	
 		printf("\nEnter your choice : ");
@@ -185,6 +187,19 @@ int main()
 				
 				node *HEAD3=union_list(HEAD1,HEAD2);
 				printf("\nUnion of list-1 and list-2 :  ");
+				display(HEAD3);
+				break;
+				
+			case 20:
+				printf("\nAccept List-1");
+				HEAD1=create();
+				
+				printf("\nAccept List-2");
+				HEAD2=create();
+				
+				printf("\nIntersection of List-1 and List-2  : ");
+				HEAD3=intersection_list(HEAD1,HEAD2);
+				
 				display(HEAD3);
 				break;
 		}
@@ -671,6 +686,63 @@ node *union_list(node *head1,node *head2)
 	head2=delete_duplicate(head2);
 	
 	head3=merge_list(head1,head2);
+	
+	return head3;
+}
+
+int search(node *head,int data)
+{
+	if(!head)
+	return 0;
+	node *p=head;
+	do
+	{
+		if(p->data==data)
+		return 1;
+		p=p->next;
+	}while(p!=head);
+	
+	return 0;
+}
+
+node *intersection_list(node *head1,node *head2)
+{
+	node *head3=NULL,*p,*q,*q3,*p3;
+	
+	head1=delete_duplicate(head1);
+	head2=delete_duplicate(head2);
+	
+	p=head1;
+	do
+	{
+		q=head2;
+		do
+		{
+			if(p->data==q->data)
+            {
+                if(!search(head3,p->data)) 
+                {
+                    q3=cn();
+                    q3->data=p->data;
+                    if(!head3)
+                    {
+                        head3=q3;
+                        head3->next=head3;
+                        p3=head3;
+                    }
+                    else
+                    {
+                        q3->next=head3;
+                        p3->next=q3;
+                        p3=q3;
+                    }
+                }
+                break;
+            }
+			q=q->next;
+		}while(q!=head2);
+		p=p->next;
+	}while(p!=head1);
 	
 	return head3;
 }
