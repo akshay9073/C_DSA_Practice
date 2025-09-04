@@ -28,6 +28,7 @@ node *sort_list_fun(node *);
 node *union_list(node *,node *);
 node *intersection_list(node *,node *);
 node *difference_list(node *,node *);
+node *symmetric_difference(node *,node *);
 int main()
 {
 	node *HEAD=NULL;
@@ -58,6 +59,7 @@ int main()
 		printf("\n 19)Union of Linked List");
 		printf("\n 20)Intersection of Linked List");
 		printf("\n 21)Difference List");
+		printf("\n 22)Symmetric Difference");
 		printf("\n===================================================================================================\n");
 	
 		printf("\nEnter your choice : ");
@@ -201,6 +203,19 @@ int main()
 				
 				printf("\nDifference of List-1 and List-2  : ");
 				HEAD3=difference_list(HEAD1,HEAD2);
+				
+				display(HEAD3);
+				break;
+				
+			case 22:
+				printf("\nAccept List-1");
+				HEAD1=create();
+				
+				printf("\nAccept List-2");
+				HEAD2=create();
+				
+				printf("\nSymmetric Difference of List-1 and List-2  : ");
+				HEAD3=symmetric_difference(HEAD1,HEAD2);
 				
 				display(HEAD3);
 				break;
@@ -794,6 +809,21 @@ node *difference_list(node *head1,node *head2)
 		}	
 		p=p->next;
 	}while(p!=head1);
+	
+	return head3;
+}
+
+node *symmetric_difference(node *head1,node *head2)
+{
+	node *head3=NULL,*diff1,*diff2;
+		
+	diff1=difference_list(head1,head2);
+//	printf("\nDisplay node : ");
+//	display(diff1);
+	
+	diff2=difference_list(head2,head1);
+//	display(diff2);
+	head3=union_list(diff1,diff2);
 	
 	return head3;
 }
