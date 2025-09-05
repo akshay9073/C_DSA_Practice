@@ -7,4 +7,20 @@ typedef struct node
     struct node *next;
 }node;
 
+int main()
+{
+    node *HEAD=NULL; 
 
+    int ch;
+    while(1)
+    {
+        printf("\n=========Linked List==========\n");
+
+        printf("\n==============================\n");
+
+        printf("\nEnter Your Choice : ");
+        scanf("%d",&ch);
+	}
+	
+	
+}
