@@ -11,10 +11,12 @@ node *cn();
 node *create();
 void display(node *);
 node *insert_first(node *);
+node *insert_last(node *);
+node *insert_node(node *,int);
 int main()
 {
     node *HEAD=NULL; 
-
+	int pos;
     int ch;
     while(1)
     {
@@ -22,6 +24,8 @@ int main()
 		printf("\n1)Create Linked List");
 		printf("\n2)Display");
 		printf("\n3)Insert at First");
+		printf("\n4)Insert at Last");
+		printf("\n5)Insert at Position");
         printf("\n==============================\n");
 
         printf("\nEnter Your Choice : ");
@@ -43,6 +47,19 @@ int main()
             	HEAD=insert_first(HEAD);
             	printf("\nInsert Success!!");
             	break;
+            	
+            case 4:
+            	HEAD=insert_last(HEAD);
+            	printf("\nInsert Success!!");
+            	break;
+            	
+            case 5:
+            	printf("\nEnter position to enter : ");
+            	scanf("%d",&pos);
+            	HEAD=insert_node(HEAD,pos);
+            	printf("\nInsert Success!!");
+            	break;
+            	
 
 		}
 	}
@@ -113,4 +130,34 @@ node *insert_first(node *head)
 	return head;
 }
 
+node *insert_last(node *head)
+{
+	node *p=head;
+	
+	while(p->next!=NULL)
+	p=p->next;
+	
+	node *q=cn();
+	printf("\nEnter Data : ");
+	scanf("%d",&q->data);
+	
+	q->next=NULL;
+	q->prev=p;
+	p->next=q;
+	
+	return head;
+}
 
+node *insert_node(node *head,int pos)
+{
+	
+	int i=0;
+	node *p=head;
+	while(i<pos-1)
+	{
+		printf("\n%d",p->data);
+		p=p->next;
+		i++;
+	}
+	return head;
+}
