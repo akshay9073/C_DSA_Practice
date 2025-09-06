@@ -13,6 +13,7 @@ void display(node *);
 node *insert_first(node *);
 node *insert_last(node *);
 node *insert_node(node *,int);
+node *delete_first(node *);
 int main()
 {
     node *HEAD=NULL; 
@@ -26,6 +27,7 @@ int main()
 		printf("\n3)Insert at First");
 		printf("\n4)Insert at Last");
 		printf("\n5)Insert at Position");
+		printf("\n6)Delete at First");
         printf("\n==============================\n");
 
         printf("\nEnter Your Choice : ");
@@ -58,6 +60,11 @@ int main()
             	scanf("%d",&pos);
             	HEAD=insert_node(HEAD,pos);
             	printf("\nInsert Success!!");
+            	break;
+            	
+            case 6:
+            	HEAD=delete_first(HEAD);
+            	printf("\nDelete Success!!");
             	break;
             	
 
@@ -183,5 +190,16 @@ node *insert_node(node *head,int pos)
 	p->next=q;
 	
 	return head;
+	return head;
+}
+
+node *delete_first(node *head)
+{
+	node *p=head;
+	
+	p->next->prev=NULL;
+	head=p->next;
+	free(p);
+	
 	return head;
 }
