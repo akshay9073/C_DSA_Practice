@@ -151,13 +151,37 @@ node *insert_last(node *head)
 node *insert_node(node *head,int pos)
 {
 	
-	int i=0;
+	if(pos<=1)
+	{
+		node *q=cn();
+		printf("\nEnter Data : ");
+		scanf("%d",&q->data);
+		q->prev=NULL;
+		q->next=head;
+		head->prev=q;
+		head=q;
+		
+		return head;
+	}
+	
+	
+	
+	int i=1;
 	node *p=head;
 	while(i<pos-1)
 	{
-		printf("\n%d",p->data);
 		p=p->next;
 		i++;
 	}
+	
+	node *q=cn();
+	printf("\nEnter Data : ");
+	scanf("%d",&q->data);
+	
+	q->next=p->next;
+	q->prev=p;
+	p->next=q;
+	
+	return head;
 	return head;
 }
