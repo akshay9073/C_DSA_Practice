@@ -10,6 +10,7 @@ typedef struct node
 node *cn();
 node *create();
 void display(node *);
+node *insert_first(node *);
 int main()
 {
     node *HEAD=NULL; 
@@ -20,6 +21,7 @@ int main()
         printf("\n=========Linked List==========\n");
 		printf("\n1)Create Linked List");
 		printf("\n2)Display");
+		printf("\n3)Insert at First");
         printf("\n==============================\n");
 
         printf("\nEnter Your Choice : ");
@@ -35,6 +37,11 @@ int main()
             case 2:
             	printf("\nDisplay Linked List : ");
             	display(HEAD);
+            	break;
+            	
+            case 3:
+            	HEAD=insert_first(HEAD);
+            	printf("\nInsert Success!!");
             	break;
 
 		}
@@ -89,8 +96,21 @@ void display(node *head)
 		printf("\t%d",p->data);
 		p=p->next;
 	}
+}
+
+node *insert_first(node *head)
+{
+	node *q=cn();
+	int x;
+	printf("\nEnter Data : ");
+	scanf("%d",&x);
+	q->data=x;
+	q->next=head;
+	q->prev=NULL;
+	head->prev=q;
+	head=q;
 	
-	
+	return head;
 }
 
 
