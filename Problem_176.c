@@ -131,6 +131,9 @@ void display(node *head)
 {
 	node *p=head;
 	
+	if(head==NULL)
+	printf("\nLinked list is empty!!\n");
+	
 	while(p!=NULL)
 	{
 		printf("\t%d",p->data);
@@ -239,6 +242,22 @@ node *delete_last(node *head)
 node *delete_pos(node *head,int pos)
 {
 	node *p=head;
+	
+	if(head->next==NULL)
+	{
+		free(head);
+		head=NULL;
+		return NULL;
+		
+	}
+	if(pos<=1)
+	{
+		head->next->prev=NULL;
+		head=p->next;
+		free(p);
+		
+		return head;
+	}
 	
 	int i=0;
 	while(i<pos-1)
