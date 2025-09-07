@@ -16,10 +16,11 @@ node *insert_node(node *,int);
 node *delete_first(node *);
 node *delete_last(node *);
 node *delete_pos(node *,int);
+int count_nodes(node *head);
 int main()
 {
     node *HEAD=NULL; 
-	int pos;
+	int pos,count=0;
     int ch;
     while(1)
     {
@@ -32,6 +33,7 @@ int main()
 		printf("\n6)Delete at First");
 		printf("\n7)Delete at Last");
 		printf("\n8)Delete node");
+		printf("\n9)Count Nodes");
         printf("\n==============================\n");
 
         printf("\nEnter Your Choice : ");
@@ -81,6 +83,11 @@ int main()
             	scanf("  %d",&pos);
             	HEAD=delete_pos(HEAD,pos);
             	printf("\nDelete success!!");
+            	break;
+            	
+            case 9:
+            	count=count_nodes(HEAD);
+            	printf("\nDLL has %d Nodes ",count);
             	break;
             	
 
@@ -282,5 +289,19 @@ node *delete_pos(node *head,int pos)
 	free(p);
 	
 	return head;
+}
+
+int count_nodes(node *head)
+{
+	node *p=head;
+	int count=0;
+	while(p!=NULL)
+	{
+		count++;
+//		printf("\nCount : %d & Data : %d",count,p->data);
+		p=p->next;
+	}
+	
+	return count;
 }
 
