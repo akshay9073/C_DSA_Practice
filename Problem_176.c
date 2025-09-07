@@ -19,6 +19,7 @@ node *delete_pos(node *,int);
 int count_nodes(node *head);
 node *delete_duplicate(node *);
 node *sort_list(node *);
+node *sort_list_descending(node *);
 int main()
 {
     node *HEAD=NULL; 
@@ -38,6 +39,7 @@ int main()
 		printf("\n9)Count Nodes");
 		printf("\n10)Delete Duplicate");
 		printf("\n11)Sort List");
+		printf("\n12)Sort List Descending");
         printf("\n==============================\n");
 
         printf("\nEnter Your Choice : ");
@@ -101,6 +103,11 @@ int main()
             	
             case 11:
             	HEAD=sort_list(HEAD);
+            	printf("\nSort Success!!");
+            	break;
+            	
+            case 12:
+            	HEAD=sort_list_descending(HEAD);
             	printf("\nSort Success!!");
             	break;
             	
@@ -363,6 +370,29 @@ node *sort_list(node *head)
 		while(q!=NULL)
 		{
 			if(p->data>q->data)
+			{
+				int temp=p->data;
+				p->data=q->data;
+				q->data=temp;
+			}
+			q=q->next;
+		}
+		p=p->next;
+	}
+	return head;
+}
+
+node *sort_list_descending(node *head)
+{
+	node *p=head;
+	node *q;
+	
+	while(p!=NULL)
+	{
+		q=p->next;
+		while(q!=NULL)
+		{
+			if(p->data<q->data)
 			{
 				int temp=p->data;
 				p->data=q->data;
