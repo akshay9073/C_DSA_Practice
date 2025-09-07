@@ -17,6 +17,7 @@ node *delete_first(node *);
 node *delete_last(node *);
 node *delete_pos(node *,int);
 int count_nodes(node *head);
+node *delete_duplicate(node *);
 int main()
 {
     node *HEAD=NULL; 
@@ -34,6 +35,7 @@ int main()
 		printf("\n7)Delete at Last");
 		printf("\n8)Delete node");
 		printf("\n9)Count Nodes");
+		printf("\n10)Delete Duplicate");
         printf("\n==============================\n");
 
         printf("\nEnter Your Choice : ");
@@ -88,6 +90,11 @@ int main()
             case 9:
             	count=count_nodes(HEAD);
             	printf("\nDLL has %d Nodes ",count);
+            	break;
+            	
+            case 10:
+            	HEAD=delete_duplicate(HEAD);
+            	printf("\nDelete duplicate success!!");
             	break;
             	
 
@@ -305,3 +312,35 @@ int count_nodes(node *head)
 	return count;
 }
 
+node *delete_duplicate(node *head)
+{
+	node *p=head;
+	node *r,*q;
+	
+	 if (head == NULL || head->next == NULL)   // ? fix: also check head==NULL
+        return head;
+        
+	while(p!=NULL && p->next!=NULL)
+	{
+		q=p->next;
+		r=p;
+		while(q!=NULL)
+		{
+			if(p->data==q->data)
+			{
+				r->next = q->next;
+                if (q->next != NULL)          // ? check before accessing prev
+                    q->next->prev = r;
+                free(q);
+                q = r->next;
+			}
+			else
+			{
+				r=q;
+				q=q->next;
+			}
+		}
+		p=p->next;
+	}
+	return head;
+}
