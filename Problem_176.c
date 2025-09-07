@@ -250,14 +250,14 @@ node *delete_pos(node *head,int pos)
 		return NULL;
 		
 	}
-	if(pos<=1)
-	{
-		head->next->prev=NULL;
-		head=p->next;
-		free(p);
-		
-		return head;
-	}
+	if (pos <= 1) {
+        head = head->next;
+        if (head != NULL) { // if there was more than 1 node
+            head->prev = NULL;
+        }
+        free(p);
+        return head;
+    }
 	
 	int i=0;
 	while(i<pos-1)
@@ -266,6 +266,13 @@ node *delete_pos(node *head,int pos)
 		p=p->next;
 		i++;
 	}
+	
+	if (p->next == NULL) {
+        p->prev->next = NULL;
+        free(p);
+        return head;
+    }
+
 	
 	node *q=p;
 	q=p->next;
