@@ -25,12 +25,13 @@ node *reverse_list(node *);
 node *merge_list(node *,node *);
 node *union_list(node *,node *);
 node *merge_sort(node *,node *);
+int serach_list(node *,int);
 int main()
 {
     node *HEAD=NULL; 
 	int pos,count=0;
 	node *HEAD1=NULL,*HEAD2=NULL,*HEAD3=NULL;
-    int ch;
+    int ch,index;
     while(1)
     {
         printf("\n=========Linked List==========\n");
@@ -51,6 +52,7 @@ int main()
 		printf("\n15)Merge List ");
 		printf("\n16)Union List");
 		printf("\n17)Merge Sort List");
+		printf("\n18)Search in List");
         printf("\n==============================\n");
 
         printf("\nEnter Your Choice : ");
@@ -174,6 +176,16 @@ int main()
             	HEAD3=merge_sort(HEAD1,HEAD2);
             	display(HEAD3);
             	break;
+            	
+            case 18:
+				{
+					int x;
+	            	printf("\nEnter the element to search : ");
+	            	scanf(" %d",&x);
+	            	index=search_list(HEAD,x);
+	            	printf("\n%d element found at node : %d",x,index);
+	            	break;
+				}
 
 		}
 	}
@@ -596,4 +608,19 @@ node *merge_sort(node *head1,node *head2)
 	head3=sort_list(head3);
 	
 	return head3;
+}
+
+int search_list(node *head,int x)
+{
+	node *p=head;
+	
+	int i=0;
+	while(p!=NULL)
+	{
+		i++;
+		if(p->data==x)
+		return i;
+		
+		p=p->next;
+	}
 }
