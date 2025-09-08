@@ -1,5 +1,5 @@
 #include<stdio.h>
-
+#include<stdlib.h>
 typedef struct node
 {
     struct node *prev;
@@ -20,6 +20,8 @@ int count_nodes(node *head);
 node *delete_duplicate(node *);
 node *sort_list(node *);
 node *sort_list_descending(node *);
+node *insert_sort(node *,int);
+node *reverse_list(node *);
 int main()
 {
     node *HEAD=NULL; 
@@ -40,6 +42,8 @@ int main()
 		printf("\n10)Delete Duplicate");
 		printf("\n11)Sort List");
 		printf("\n12)Sort List Descending");
+		printf("\n13)Insert in sorted Linked List");
+		printf("\n14)Reverse a List");
         printf("\n==============================\n");
 
         printf("\nEnter Your Choice : ");
@@ -111,6 +115,20 @@ int main()
             	printf("\nSort Success!!");
             	break;
             	
+            case 13:
+				{
+					int num;
+	            	printf("\nEnter data to insert : ");
+	            	scanf("%d",&num);
+	            	HEAD=insert_sort(HEAD,num);
+	            	printf("Insert Success!!");
+	            	break;
+				}
+            	            	
+            case 14:
+            	HEAD=reverse_list(HEAD);
+            	printf("\nReverse Success!!");
+            	break;
 
 		}
 	}
@@ -404,3 +422,62 @@ node *sort_list_descending(node *head)
 	}
 	return head;
 }
+
+node *insert_sort(node *head,int x)
+{
+	
+	node *q=cn();
+	q->data=x;
+	q->next=q->prev=NULL;
+	if(head==NULL)
+	{
+		return q;
+	}
+	
+	if(x<=head->data)
+	{
+		q->next=head;
+		head->prev=q;
+		head=q;
+		return head;
+	}
+	node *p=head;
+	while(p->next!=NULL && p->next->data<x)
+	p=p->next;
+	
+	if(p->next==NULL)
+	{
+		p->next=q;
+		q->prev=p;
+		return head;
+	}
+	
+	q->next=p->next;
+	q->prev=p;
+	p->next->prev=q;
+	p->next=q;
+	
+	
+	return head;
+}
+
+node *reverse_list(node *head)
+{
+	node *p,*q;
+	p=head;
+	q=p->next;
+	p->next=NULL;
+	p->prev=q;
+	
+	while(q!=NULL)
+	{
+		q->prev=q->next;
+		q->next=p;
+		p=q;
+		q=q->prev;
+	}
+	head=p;
+	return head;
+}
+
+
