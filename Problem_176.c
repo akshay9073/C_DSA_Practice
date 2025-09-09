@@ -27,6 +27,7 @@ node *union_list(node *,node *);
 node *merge_sort(node *,node *);
 int serach_list(node *,int);
 node *update_node(node *,int);
+node *intersection_list(node *,node *);
 int main()
 {
     node *HEAD=NULL; 
@@ -55,6 +56,7 @@ int main()
 		printf("\n17)Merge Sort List");
 		printf("\n18)Search in List");
 		printf("\n19)Update Node");
+		printf("\n20)Intersection of Lists");
         printf("\n==============================\n");
 
         printf("\nEnter Your Choice : ");
@@ -198,6 +200,18 @@ int main()
 				printf("\nUpdate success!!!");
 				break;
 				}
+				
+			case 20:
+				printf("\nAccept Linked List-1");
+				HEAD1=create();
+				
+				printf("\nAccept Linked List-2");
+				HEAD2=create();
+				
+				printf("\nIntersection of Linked List");
+				HEAD3=intersection_list(HEAD1,HEAD2);
+				display(HEAD3);
+				break;
 
 		}
 	}
@@ -655,5 +669,51 @@ node *update_node(node *head,int x)
 	
 	return head;
 	
+}
+
+node *intersection_list(node *head1,node *head2)
+{
+	
+	head1=delete_duplicate(head1);
+	head2=delete_duplicate(head2);
+	
+	node *p=head1;
+	node *q;
+	
+	node *p3=NULL,*q3=NULL;
+	node *head3=NULL;
+	while(p!=NULL)
+	{
+		q=head2;
+		while(q!=NULL)
+		{
+			if(p!=NULL && p->data==q->data)
+			{
+				if(head3==NULL)
+				{
+					q3=cn();
+					q3->data=p->data;
+					q3->prev=NULL;
+					q3->next=NULL;
+					p3=q3;
+					head3=p3;
+				}
+				else
+				{
+					q3=cn();
+					q3->data=p->data;
+					q3->next=NULL;
+					q3->prev=p3;
+					p3->next=q3;
+					
+					p3=p3->next;
+				}
+			}
+			q=q->next;
+		}
+		p=p->next;
+	}
+	
+	return head3;
 }
 
