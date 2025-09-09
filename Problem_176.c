@@ -58,7 +58,8 @@ int main()
 		printf("\n18)Search in List");
 		printf("\n19)Update Node");
 		printf("\n20)Intersection of Lists");
-		printf("\n29)Difference of List1-List2");
+		printf("\n21)Difference of List1-List2");
+		printf("\n22)Difference of List2-List1");
         printf("\n==============================\n");
 
         printf("\nEnter Your Choice : ");
@@ -224,6 +225,18 @@ int main()
 				
 				printf("\nDifference of Linked List");
 				HEAD3=diff_list(HEAD1,HEAD2);
+				display(HEAD3);
+				break;
+				
+			case 22:
+								printf("\nAccept Linked List-1");
+				HEAD1=create();
+				
+				printf("\nAccept Linked List-2");
+				HEAD2=create();
+				
+				printf("\nDifference of Linked List(List-2 - List-1)");
+				HEAD3=diff_list(HEAD2,HEAD1);
 				display(HEAD3);
 				break;
 
