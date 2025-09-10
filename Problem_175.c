@@ -60,6 +60,7 @@ int main()
 		printf("\n 20)Intersection of Linked List");
 		printf("\n 21)Difference List");
 		printf("\n 22)Symmetric Difference");
+		printf("\n 23)Exit");
 		printf("\n===================================================================================================\n");
 	
 		printf("\nEnter your choice : ");
@@ -218,6 +219,11 @@ int main()
 				HEAD3=symmetric_difference(HEAD1,HEAD2);
 				
 				display(HEAD3);
+				break;
+				
+			case 23:
+				printf("\nExiting this code ");
+				exit(0);
 				break;
 				
 			
