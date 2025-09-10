@@ -60,6 +60,7 @@ int main()
 		printf("\n 21)Difference of Linked List List-1 - List2");
 		printf("\n 22)Difference of Linked List List-2-List1");
 		printf("\n 23)Skip Node");
+		printf("\n 24)Exit");
 		printf("\n=========================================================================================================\n");
 	
 	printf("\nEnter your choice : ");
@@ -250,6 +251,11 @@ int main()
         case 23:
         	printf("\nSkip a node !!");
         	HEAD=skip_node(HEAD);
+        	break;
+        	
+        case 24:
+        	printf("\nExit the code");
+        	exit(0);
         	break;
 	}
 }
