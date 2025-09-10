@@ -29,6 +29,7 @@ int serach_list(node *,int);
 node *update_node(node *,int);
 node *intersection_list(node *,node *);
 node *diff_list(node *,node *);
+node *skip_node(node *);
 int main()
 {
     node *HEAD=NULL; 
@@ -60,6 +61,7 @@ int main()
 		printf("\n20)Intersection of Lists");
 		printf("\n21)Difference of List1-List2");
 		printf("\n22)Difference of List2-List1");
+		printf("\n23)Skip Node ");
         printf("\n==============================\n");
 
         printf("\nEnter Your Choice : ");
@@ -238,6 +240,11 @@ int main()
 				printf("\nDifference of Linked List(List-2 - List-1)");
 				HEAD3=diff_list(HEAD2,HEAD1);
 				display(HEAD3);
+				break;
+				
+			case 23:
+				HEAD=skip_node(HEAD);
+				printf("\nSkip Node success!");
 				break;
 
 		}
@@ -798,3 +805,36 @@ node *diff_list(node *head1,node *head2)
 	return head3;
 }
 
+node *skip_node(node *head)
+{
+	node *p,*q;
+	
+	if(head==NULL || head->next==NULL)
+	return head;
+	
+	if(head->next->next==NULL)
+	{
+		p=head->next;
+		free(p);
+		head->next=NULL;
+		return head;
+	}
+	
+	p=head;
+	while(p->next!=NULL)
+	{
+		q=p->next;
+		p->next=q->next;
+		if (q->next != NULL) // if not the last node
+            q->next->prev = p;
+		free(q);
+		
+		if(p->next==NULL)
+		return head;
+		
+		
+		p=p->next;
+	}
+	
+	return head;
+}
