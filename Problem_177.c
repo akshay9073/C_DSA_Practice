@@ -10,6 +10,9 @@ typedef struct node
 
 node *cn();
 node *create();
+void display(node *);
+node *insert_first(node *);
+node *insert_last(node *);
 int main()
 {
 	node *HEAD=NULL;
@@ -18,6 +21,9 @@ int main()
 	{
 			printf("\n===============Circular Doubly Linked List=========================\n");
 			printf("\n1)Create Linked List");
+			printf("\n2)Display Linked List");
+			printf("\n3)Insert at First");
+			printf("\n4)Insert at Last");
 			printf("\n===================================================================\n");
 	
 			printf("\nEnter your Choice : ");
@@ -28,6 +34,25 @@ int main()
 				case 1:
 					HEAD=create();
 					printf("\nCircular Linked List creation Success!!");
+					break;
+					
+				case 2:
+					printf("\nDisplay Linked List\n");
+					display(HEAD);
+					break;
+					
+				case 3:
+					HEAD=insert_first(HEAD);
+					printf("\nInsert at First Success");
+					break;
+					
+				case 4:
+					HEAD=insert_last(HEAD);
+					printf("\nInsert at Last Success");
+					break;
+					
+				default:
+					printf("\nEnter a valid choice\n");
 					break;
 			}
 	}	
@@ -46,9 +71,21 @@ node *create()
 	printf("\nHow many nodes you want ?\n");
 	scanf(" %d",&x);
 	
+	node *q;
+	if(x==1)
+	{
+		q=cn();
+		printf("\nEnter Data : ");
+		q->prev=NULL;
+		scanf("%d",&q->data);
+		q->next=q;
+		return q;
+	}
+	
 	node *p=head;
 	int i=0;
-	node *q;
+	
+	
 	while(i<x-1)
 	{
 		if(head==NULL)
