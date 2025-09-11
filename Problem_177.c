@@ -178,37 +178,52 @@ node *insert_first(node *head)
 	
 	printf("\nEnter Data : ");
 	scanf(" %d",&q->data);
-	q->prev=NULL;
-	q->next=p;
-	
-	p->prev=q;
-	head=q;
-	do
+	if (head == NULL) 
 	{
-		q=q->next;
-	}while(q->next!=p);
-	q->next=head;
-	return head;	
+    	q->next = q;
+    	q->prev = q;
+    	return q;
+	}
+
+node *last = head->prev;
+
+q->next = head;
+q->prev = last;
+
+last->next = q;
+head->prev = q;
+
+head = q;
 }
 
 node *insert_last(node *head)
 {
-	node *p=head;	
-		do
-		{
-			p=p->next;
-		}while(p->next!=head);	
-	
-	
-	node *q=cn();
-	printf("\nEnter Data : ");
-	scanf(" %d",&q->data);
-	
-		q->prev=p;
-		p->next=q;
-		q->next=head;
-				
-	return head;	
+	node *q = cn();
+    printf("\nEnter Data : ");
+    scanf(" %d", &q->data);
+
+    if (head == NULL) {
+        q->next = q;
+        q->prev = q;
+        return q;
+    }
+
+    node *last = head->prev;
+    if (last == NULL) 
+	{              
+        node *p = head;
+        while (p->next != head && p->next != NULL)
+            p = p->next;
+        last = p;
+    }
+
+    q->next = head;
+    q->prev = last;
+
+    last->next = q;
+    head->prev = q;
+
+    return head;	
 }
 
 node *insert_node(node *head,int pos)
