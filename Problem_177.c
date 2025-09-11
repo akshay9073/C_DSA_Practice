@@ -20,7 +20,7 @@ node *delete_node(node *,int);
 int main()
 {
 	node *HEAD=NULL;
-	int choice,pos;
+	int choice,pos,count;
 	while(1)
 	{
 			printf("\n===============Circular Doubly Linked List=========================\n");
@@ -32,6 +32,7 @@ int main()
 			printf("\n6)Delete a First");
 			printf("\n7)Delete a Last");
 			printf("\n8)Delete a node");
+			printf("\n9)Count nodes");
 			printf("\n===================================================================\n");
 	
 			printf("\nEnter your Choice : ");
@@ -81,6 +82,11 @@ int main()
 					scanf("%d",&pos);
 					HEAD=delete_node(HEAD,pos);
 					printf("\nDelete Success!!");
+					break;
+					
+				case 9:
+					count=count_node(HEAD);
+					printf("\nList has : %d ",count);
 					break;
 					
 				default:
@@ -140,6 +146,9 @@ node *create()
 		
 		i++;	
 	}
+	head->prev = p;
+	p->next = head;
+
 	return head;	
 }
 
@@ -288,6 +297,7 @@ node *delete_node(node *head,int pos)
 	{
 		head=delete_first(head);
 		return head;
+		
 	}
 	
 	int i=1;
@@ -303,6 +313,26 @@ node *delete_node(node *head,int pos)
 	p->next=q->next;
 	free(q);
 	
-	return head;
+	return head;	
+}
+
+int count_node(node *head)
+{
+	node *p=head;
 	
+	if(head==NULL)
+	return 0;
+	
+	if(head->next==NULL)
+	return 1;
+	
+	int count=0;
+	
+	do
+	{
+		++count;
+		p=p->next;
+	}while(p->next!=head);
+	count++;
+	return count;
 }
