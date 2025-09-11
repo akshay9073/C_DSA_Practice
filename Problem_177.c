@@ -101,7 +101,7 @@ node *create()
 		q=cn();
 		q->prev=p;
 		printf("\nEnter Data : ");
-		scanf("%d",&q->data);
+		scanf(" %d",&q->data);
 		p->next=q;
 		q->next=head;
 		p=p->next;
@@ -130,3 +130,42 @@ void display(node *head)
 	}	
 }
 
+node *insert_first(node *head)
+{
+	node *p=head;
+	node *q=cn();
+	
+	printf("\nEnter Data : ");
+	scanf(" %d",&q->data);
+	q->prev=NULL;
+	q->next=p;
+	
+	p->prev=q;
+	head=q;
+	do
+	{
+		q=q->next;
+	}while(q->next!=p);
+	q->next=head;
+	return head;	
+}
+
+node *insert_last(node *head)
+{
+	node *p=head;	
+		do
+		{
+			p=p->next;
+		}while(p->next!=head);	
+	
+	
+	node *q=cn();
+	printf("\nEnter Data : ");
+	scanf(" %d",&q->data);
+	
+		q->prev=p;
+		p->next=q;
+		q->next=head;
+				
+	return head;	
+}
