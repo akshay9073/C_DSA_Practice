@@ -288,15 +288,13 @@ node *delete_last(node *head)
 		return head;
 	}
 	
-	do
-	{
-		p=p->next;
-	}while(p->next!=head);
-	
-	node *q=p->prev;
-	q->next=head;
-	free(p);
-	
+	node *last = head->prev;
+node *second_last = last->prev;
+
+second_last->next = head;
+head->prev = second_last;
+
+free(last);
 	return head;
 }
 
