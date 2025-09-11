@@ -13,10 +13,11 @@ node *create();
 void display(node *);
 node *insert_first(node *);
 node *insert_last(node *);
+node *insert_node(node *,int);
 int main()
 {
 	node *HEAD=NULL;
-	int choice;
+	int choice,pos;
 	while(1)
 	{
 			printf("\n===============Circular Doubly Linked List=========================\n");
@@ -24,6 +25,7 @@ int main()
 			printf("\n2)Display Linked List");
 			printf("\n3)Insert at First");
 			printf("\n4)Insert at Last");
+			printf("\n5)Insert a node");
 			printf("\n===================================================================\n");
 	
 			printf("\nEnter your Choice : ");
@@ -49,6 +51,13 @@ int main()
 				case 4:
 					HEAD=insert_last(HEAD);
 					printf("\nInsert at Last Success");
+					break;
+					
+				case 5:
+					printf("\nEnter a position to insert node : ");
+					scanf(" %d",&pos);
+					HEAD=insert_node(HEAD,pos);
+					printf("\nInsert Success!!");
 					break;
 					
 				default:
@@ -168,4 +177,34 @@ node *insert_last(node *head)
 		q->next=head;
 				
 	return head;	
+}
+
+node *insert_node(node *head,int pos)
+{
+	node *p=head;
+	
+	if(pos==1)
+	{
+		head=insert_first(head);
+		return head;
+	}
+	
+	int i=1;
+	
+	while(i<pos-1)
+	{
+		p=p->next;
+		i++;
+	}
+	
+	node *q=cn();
+	printf("\nEnter Data : ");
+	scanf("%d",&q->data);
+	
+	q->prev=p;
+	q->next=p->next;
+	p->next=q;
+	
+	return head;
+	
 }
