@@ -265,18 +265,14 @@ node *delete_first(node *head)
 		return head;
 	}
 	
-	node *p=head;
-	node *q=p->next;
-	head=q;
-	q->prev=NULL;
-	
-	do
-	{
-		q=q->next;
-	}while(q->next!=p);
-	
-	q->next=head;
-	free(p);
+	node *last = head->prev;
+	node *temp = head;
+
+	head = head->next;
+	head->prev = last;
+	last->next = head;
+
+	free(temp);
 	
 	return head;
 }
