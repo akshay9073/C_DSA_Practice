@@ -108,7 +108,25 @@ node *create()
 		
 		i++;	
 	}
-	return head;
+	return head;	
+}
+
+void display(node *head)
+{
+	node *p=head;
 	
+	if(p==NULL)
+	printf("\nLinked List is empty");
+	
+	if(p->next==head)
+	printf("%d",p->data);
+	else
+	{
+		do
+		{
+			printf("%d\t",p->data);
+			p=p->next;
+		}while(p!=head);
+	}	
 }
 
