@@ -37,6 +37,7 @@ int main()
 			printf("\n9)Count nodes");
 			printf("\n10)Sort nodes");
 			printf("\n11)Sort nodes Descendig");
+			printf("\n12)Delete duplicate in sorted");
 			printf("\n===================================================================\n");
 	
 			printf("\nEnter your Choice : ");
@@ -101,6 +102,11 @@ int main()
 				case 11:
 					HEAD=sort_node_desc(HEAD);
 					printf("\nSorting Success!!");
+					break;
+					
+				case 12:
+					HEAD=delete_sort_dup(HEAD);
+					printf("\nDelete Duplicate Sorted Success");
 					break;
 					
 				default:
@@ -400,6 +406,22 @@ node *sort_node_desc(node *head)
 	}while(p!=head);
 	
 	return head;
-		
+}
 
+node *delete_duplicate_sort(node *head)
+{
+	node *p=head;
+	
+	do
+	{
+		if(p->data==p->next->data)
+		{
+			p->next=p->next->next;
+			p->next->next->prev=p;
+			free(p->next;)
+		}
+		p=p->next;
+	}while(p!=head);
+	
+	return head;
 }
