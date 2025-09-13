@@ -17,6 +17,7 @@ node *insert_node(node *,int);
 node *delete_first(node *);
 node *delete_last(node *);
 node *delete_node(node *,int);
+node *sort_node(node *);
 int main()
 {
 	node *HEAD=NULL;
@@ -33,6 +34,7 @@ int main()
 			printf("\n7)Delete a Last");
 			printf("\n8)Delete a node");
 			printf("\n9)Count nodes");
+			printf("\n10)Sort nodes");
 			printf("\n===================================================================\n");
 	
 			printf("\nEnter your Choice : ");
@@ -87,6 +89,11 @@ int main()
 				case 9:
 					count=count_node(HEAD);
 					printf("\nList has : %d ",count);
+					break;
+					
+				case 10:
+					HEAD=sort_node(HEAD);
+					printf("\nSorting Success!!");
 					break;
 					
 				default:
@@ -328,20 +335,38 @@ node *delete_node(node *head,int pos)
 int count_node(node *head)
 {
 	node *p=head;
-	
-	if(head==NULL)
-	return 0;
-	
-	if(head->next==NULL)
-	return 1;
-	
-	int count=0;
+	int count = 0;
+do {
+    count++;
+    p = p->next;
+} while(p != head);
+return count;
+
+	return count;
+}
+
+node *sort_node(node *head)
+{
+	node *p=head;
+	node *q;
 	
 	do
 	{
-		++count;
+		q=p->next;
+		while(q!=head)
+		{
+			if(p->data>=q->data)
+			{
+				int temp=p->data;
+				p->data=q->data;
+				q->data=temp;
+			}
+			q=q->next;
+		}
 		p=p->next;
-	}while(p->next!=head);
-	count++;
-	return count;
+	}while(p!=head);
+	
+	return head;
+		
+
 }
