@@ -19,6 +19,7 @@ node *delete_last(node *);
 node *delete_node(node *,int);
 node *sort_node(node *);
 node *sort_node_desc(node *);
+node *delete_sort_dup(node *);
 int main()
 {
 	node *HEAD=NULL;
@@ -37,7 +38,7 @@ int main()
 			printf("\n9)Count nodes");
 			printf("\n10)Sort nodes");
 			printf("\n11)Sort nodes Descendig");
-			printf("\n12)Delete duplicate in sorted");
+			printf("\n12)Delete duplicate in sorted(Removes only 1 in a pass)");
 			printf("\n===================================================================\n");
 	
 			printf("\nEnter your Choice : ");
@@ -368,7 +369,7 @@ node *sort_node(node *head)
 		q=p->next;
 		while(q!=head)
 		{
-			if(p->data>=q->data)
+			if(p->data>q->data)
 			{
 				int temp=p->data;
 				p->data=q->data;
@@ -408,19 +409,23 @@ node *sort_node_desc(node *head)
 	return head;
 }
 
-node *delete_duplicate_sort(node *head)
+node *delete_sort_dup(node *head)
 {
 	node *p=head;
 	
 	do
 	{
-		if(p->data==p->next->data)
-		{
-			p->next=p->next->next;
-			p->next->next->prev=p;
-			free(p->next;)
-		}
-		p=p->next;
+        if (p->data == p->next->data)
+        {
+            node *dup = p->next;            
+            p->next = dup->next;            
+            dup->next->prev = p;            
+            free(dup);                      
+        }
+        else
+        {
+            p = p->next; 
+        }
 	}while(p!=head);
 	
 	return head;
