@@ -30,6 +30,7 @@ node *update_node(node *,int);
 node *intersection_list(node *,node *);
 node *diff_list(node *,node *);
 
+
 int main()
 {
 	node *HEAD=NULL;
@@ -60,6 +61,7 @@ int main()
 			printf("\n19)Update a node ");
 			printf("\n20)Intersection of Linked Lists ");
 			printf("\n21)Difference in Linked List-1 - Linked List-2");
+			printf("\n22)Difference in Linked List-2 - Linked List-1");
 			printf("\n===================================================================\n");
 	
 			printf("\nEnter your Choice : ");
@@ -207,6 +209,18 @@ int main()
 					
 					printf("\nIntersection Of Linked List : ");
 					HEAD=diff_list(HEAD1,HEAD2);
+					
+					break;
+					
+				case 22:
+					printf("\nAccept a Linked List : ");
+					HEAD1=create();
+					
+					printf("\nAccept a Linked List : ");
+					HEAD2=create();
+					
+					printf("\nIntersection Of Linked List : ");
+					HEAD=diff_list(HEAD2,HEAD1);
 					
 					break;
 					
