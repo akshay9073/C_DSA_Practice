@@ -163,16 +163,14 @@ node *create()
 			scanf(" %d",&q->data);
 			head=p=q;
 		}
-		else
-		{
-					q=cn();
+		q=cn();
 		q->prev=p;
 		printf("\nEnter Data : ");
 		scanf(" %d",&q->data);
 		p->next=q;
 		q->next=head;
 		p=p->next;
-		}
+		
 		
 		
 		i++;	
@@ -438,5 +436,25 @@ node *delete_sort_dup(node *head)
         }
 	}while(p!=head);
 	
+	return head;
+}
+
+node *reverse_list(node *head)
+{
+	if(head==NULL || head->next==head)
+	return head;
+	
+	node *current=head;
+	
+	do
+	{
+		node *temp=current->next;
+		current->next=current->prev;
+		current->prev=temp;
+		
+		current=current->prev;
+	}while(current!=head);
+	
+	head=head->next;
 	return head;
 }
