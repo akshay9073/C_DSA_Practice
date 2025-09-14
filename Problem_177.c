@@ -29,7 +29,7 @@ int search_element(node *,int);
 node *update_node(node *,int);
 node *intersection_list(node *,node *);
 node *diff_list(node *,node *);
-
+node *skip_node(node *);
 
 int main()
 {
@@ -62,6 +62,7 @@ int main()
 			printf("\n20)Intersection of Linked Lists ");
 			printf("\n21)Difference in Linked List-1 - Linked List-2");
 			printf("\n22)Difference in Linked List-2 - Linked List-1");
+			printf("\n23)Skip Nodes");
 			printf("\n===================================================================\n");
 	
 			printf("\nEnter your Choice : ");
@@ -222,6 +223,11 @@ int main()
 					printf("\nIntersection Of Linked List : ");
 					HEAD=diff_list(HEAD2,HEAD1);
 					
+					break;
+					
+				case 23:
+					HEAD=skip_node(HEAD);
+					printf("\nSkip Node Success!!");
 					break;
 					
 				default:
@@ -815,4 +821,32 @@ node *diff_list(node *head1,node *head2)
 	}while(p1!=head1);
 	
 	return head3;
+}
+
+node *skip_node(node *head)
+{
+	if(head==NULL || head->next==head)
+	return head;
+	
+	node *p=head;
+	if(head->next->next==head)
+	{
+node *temp = head->next;   // second node
+    head->next = head;
+    head->prev = head;
+    free(temp);
+    return head;		
+	}
+	
+	node *q;
+	do
+	{
+		q=p->next;
+		p->next=q->next;
+		q->next->prev=p;
+		free(q);
+		p=p->next;
+	}while(p!=head);
+	
+	return head;	
 }
