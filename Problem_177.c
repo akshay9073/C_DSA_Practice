@@ -28,6 +28,8 @@ node *insert_sort(node *,int);
 int search_element(node *,int);
 node *update_node(node *,int);
 node *intersection_list(node *,node *);
+node *diff_list(node *,node *);
+
 int main()
 {
 	node *HEAD=NULL;
@@ -57,6 +59,7 @@ int main()
 			printf("\n18)Search in Linked List");
 			printf("\n19)Update a node ");
 			printf("\n20)Intersection of Linked Lists ");
+			printf("\n21)Difference in Linked List-1 - Linked List-2");
 			printf("\n===================================================================\n");
 	
 			printf("\nEnter your Choice : ");
@@ -192,6 +195,18 @@ int main()
 					
 					printf("\nIntersection Of Linked List : ");
 					HEAD=intersection_list(HEAD1,HEAD2);
+					
+					break;
+					
+				case 21:
+					printf("\nAccept a Linked List : ");
+					HEAD1=create();
+					
+					printf("\nAccept a Linked List : ");
+					HEAD2=create();
+					
+					printf("\nIntersection Of Linked List : ");
+					HEAD=diff_list(HEAD1,HEAD2);
 					
 					break;
 					
@@ -729,6 +744,58 @@ node *intersection_list(node *head1,node *head2)
 			}
 			p2=p2->next;
 		}while(p2!=head2);
+		
+		p1=p1->next;
+	}while(p1!=head1);
+	
+	return head3;
+}
+
+node *diff_list(node *head1,node *head2)
+{
+	head1=delete_duplicate(head1);
+	head2=delete_duplicate(head2);
+	
+	if(head1==NULL || head2==NULL)
+		return NULL;
+	
+	node *p1=head1,*p2;
+	node *head3=NULL,*q;
+	int flag=1;
+	do
+	{
+		flag=1;
+		p2=head2;
+		do
+		{
+				if(p2->data==p1->data)
+				{
+					flag=0;
+					break;		
+				}
+			p2=p2->next;
+		}while(p2!=head2);
+		
+		if(flag)
+		{
+				node *temp=cn();
+				temp->data=p1->data;
+			
+				if(head3==NULL)
+				{
+					temp->prev=temp->next=temp;
+					head3=q=temp;
+				}
+				else
+				{
+					temp->prev=q;
+					temp->next=head3;
+					q->next=temp;
+					head3->prev=temp;
+				
+					q=q->next;
+				}
+		}
 		
 		p1=p1->next;
 	}while(p1!=head1);
