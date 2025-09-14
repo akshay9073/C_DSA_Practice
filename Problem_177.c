@@ -27,6 +27,7 @@ node *union_list(node *,node *);
 node *insert_sort(node *,int);
 int search_element(node *,int);
 node *update_node(node *,int);
+node *intersection_list(node *,node *);
 int main()
 {
 	node *HEAD=NULL;
@@ -55,6 +56,7 @@ int main()
 			printf("\n17)Insert Sort");
 			printf("\n18)Search in Linked List");
 			printf("\n19)Update a node ");
+			printf("\n20)Intersection of Linked Lists ");
 			printf("\n===================================================================\n");
 	
 			printf("\nEnter your Choice : ");
@@ -179,6 +181,18 @@ int main()
 					scanf(" %d",&pos);
 					HEAD=update_node(HEAD,pos);
 					printf("\nUpdate node success!!");
+					break;
+					
+				case 20:
+					printf("\nAccept a Linked List : ");
+					HEAD1=create();
+					
+					printf("\nAccept a Linked List : ");
+					HEAD2=create();
+					
+					printf("\nIntersection Of Linked List : ");
+					HEAD=intersection_list(HEAD1,HEAD2);
+					
 					break;
 					
 				default:
@@ -676,4 +690,48 @@ node *update_node(node *head,int pos)
 	p->data=x;
 	
 	return head;
+}
+
+node *intersection_list(node *head1,node *head2)
+{
+	head1=delete_duplicate(head1);
+	head2=delete_duplicate(head2);
+	
+	if(head1==NULL || head2==NULL)
+		return NULL;
+	
+	node *p1=head1,*p2;
+	node *head3=NULL,*q;
+	do
+	{
+		p2=head2;
+		do
+		{
+				if(p2->data==p1->data)
+				{
+						node *temp=cn();
+						temp->data=p1->data;
+			
+				if(head3==NULL)
+				{
+					temp->prev=temp->next=temp;
+					head3=q=temp;
+				}
+				else
+				{
+					temp->prev=q;
+					temp->next=head3;
+					q->next=temp;
+					head3->prev=temp;
+				
+					q=q->next;
+				}
+			}
+			p2=p2->next;
+		}while(p2!=head2);
+		
+		p1=p1->next;
+	}while(p1!=head1);
+	
+	return head3;
 }
