@@ -22,9 +22,12 @@ node *sort_node_desc(node *);
 node *delete_sort_dup(node *);
 node *reverse_list(node *);
 node *delete_duplicate(node *);
+node *merge_list(node *,node *);
 int main()
 {
 	node *HEAD=NULL;
+	node *HEAD1=NULL,*HEAD2=NULL;
+	node *HEAD3=NULL;
 	int choice,pos,count;
 	while(1)
 	{
@@ -43,6 +46,7 @@ int main()
 			printf("\n12)Delete duplicate in sorted(Removes only 1 in a pass)");
 			printf("\n13)Reverse a linked list");
 			printf("\n14)Delete Duplicate");
+			printf("\n15)Merge Linked List");
 			printf("\n===================================================================\n");
 	
 			printf("\nEnter your Choice : ");
@@ -122,6 +126,18 @@ int main()
 				case 14:
 					HEAD=delete_duplicate(HEAD);
 					printf("\nDelete duplicate success!!");
+					break;
+					
+				case 15:
+					printf("\nAccept Linked List");
+					HEAD1=create();
+					
+					printf("\nAccept Linked List");
+					HEAD2=create();
+					
+					printf("\nMerge Linked List");
+					HEAD=merge_list(HEAD1,HEAD2);
+					
 					break;
 					
 				default:
@@ -500,4 +516,27 @@ node *delete_duplicate(node *head)
 	}while(p!=head);
 	
 	return head;
+}
+
+node *merge_list(node *head1, node *head2)
+{
+	
+	
+	if(head1==NULL)
+	return head2;
+	
+	if(head2==NULL)
+	return head1;
+	
+	node *last1=head1->prev;
+	node *last2=head2->prev;
+	
+	last1->next=head2;
+	head2->prev=last1;
+	
+	last2->next=head1;
+	head1->prev=last2;
+	
+	return head1;
+		
 }
