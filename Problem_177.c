@@ -24,12 +24,13 @@ node *reverse_list(node *);
 node *delete_duplicate(node *);
 node *merge_list(node *,node *);
 node *union_list(node *,node *);
+node *insert_sort(node *,int);
 int main()
 {
 	node *HEAD=NULL;
 	node *HEAD1=NULL,*HEAD2=NULL;
 	node *HEAD3=NULL;
-	int choice,pos,count;
+	int choice,pos,count,x;
 	while(1)
 	{
 			printf("\n===============Circular Doubly Linked List=========================\n");
@@ -49,6 +50,7 @@ int main()
 			printf("\n14)Delete Duplicate");
 			printf("\n15)Merge Linked List");
 			printf("\n16)Union of Linked List");
+			printf("\n17)Insert Sort");
 			printf("\n===================================================================\n");
 	
 			printf("\nEnter your Choice : ");
@@ -152,6 +154,13 @@ int main()
 					printf("\nUnion Linked List");
 					HEAD=union_list(HEAD1,HEAD2);
 					
+					break;
+					
+				case 17:
+					printf("\nEnter the element : ");
+					scanf(" %d",&x);
+					HEAD=insert_sort(HEAD,x);
+					printf("\nInsert Success!!");
 					break;
 					
 				default:
@@ -565,4 +574,50 @@ node *union_list(node *head1,node *head2)
 	head3=delete_duplicate(head3);
 	
 	return head3;
+}
+
+node *insert_sort(node *head,int x)
+{
+	node *p=head;
+	
+	node*q=cn();
+	q->next=NULL;
+	q->prev=NULL;
+	q->data=x;
+	
+	if(head==NULL)
+	{
+		return q;
+	}
+	
+	if(x<=head->data)
+	{
+		q->prev=head->prev;
+		q->next=head;
+		head->prev->next=q;
+		head->prev=q;
+		head=q;
+		return head;
+	}
+	
+	while(p->next!=head && p->next->data<x)
+	p=p->next;
+	
+	if(p->next==head)
+	{
+		q->next=head;
+		p->next=q;
+		q->prev=p;
+		
+		head->prev=q;
+		
+		return head;
+	}
+	
+	q->next=p->next;
+	p->next->prev=q;
+	q->prev=p;
+	p->next=q;
+	
+	return head;
 }
