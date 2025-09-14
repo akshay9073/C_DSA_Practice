@@ -21,6 +21,7 @@ node *sort_node(node *);
 node *sort_node_desc(node *);
 node *delete_sort_dup(node *);
 node *reverse_list(node *);
+node *delete_duplicate(node *);
 int main()
 {
 	node *HEAD=NULL;
@@ -41,6 +42,7 @@ int main()
 			printf("\n11)Sort nodes Descendig");
 			printf("\n12)Delete duplicate in sorted(Removes only 1 in a pass)");
 			printf("\n13)Reverse a linked list");
+			printf("\n14)Delete Duplicate");
 			printf("\n===================================================================\n");
 	
 			printf("\nEnter your Choice : ");
@@ -115,6 +117,11 @@ int main()
 				case 13:
 					HEAD=reverse_list(HEAD);
 					printf("\nLinked List Reverse Success!!");
+					break;
+					
+				case 14:
+					HEAD=delete_duplicate(HEAD);
+					printf("\nDelete duplicate success!!");
 					break;
 					
 				default:
@@ -456,5 +463,41 @@ node *reverse_list(node *head)
 	}while(current!=head);
 	
 	head=head->next;
+	return head;
+}
+
+node *delete_duplicate(node *head)
+{
+	node *p=head;
+	
+	node *q;
+	
+	node *r;
+	do
+	{
+		r=p;
+		q=p->next;
+		while(q!=head)
+		{
+			if(p->data==q->data)
+			{
+				r->next=q->next;
+				q->next->prev=r;
+				
+				if(q==head)
+				head=head->next;
+				
+				free(q);
+				q=r->next;
+			}
+			else
+			{
+				r=q;
+				q=q->next;
+			}
+		}
+		p=p->next;
+	}while(p!=head);
+	
 	return head;
 }
