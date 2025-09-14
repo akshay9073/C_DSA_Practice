@@ -26,6 +26,7 @@ node *merge_list(node *,node *);
 node *union_list(node *,node *);
 node *insert_sort(node *,int);
 int search_element(node *,int);
+node *update_node(node *,int);
 int main()
 {
 	node *HEAD=NULL;
@@ -53,6 +54,7 @@ int main()
 			printf("\n16)Union of Linked List");
 			printf("\n17)Insert Sort");
 			printf("\n18)Search in Linked List");
+			printf("\n19)Update a node ");
 			printf("\n===================================================================\n");
 	
 			printf("\nEnter your Choice : ");
@@ -170,6 +172,13 @@ int main()
 					scanf(" %d",&x);
 					index=search_element(HEAD,x);
 					printf("\nElement found at node : %d ",index);
+					break;
+					
+				case 19:
+					printf("\nEnter the node to update : ");
+					scanf(" %d",&pos);
+					HEAD=update_node(HEAD,pos);
+					printf("\nUpdate node success!!");
 					break;
 					
 				default:
@@ -644,4 +653,27 @@ int search_element(node *head,int x)
 		p=p->next;
 	}while(p!=head);
 	return -1;
+}
+
+node *update_node(node *head,int pos)
+{
+	node *p=head;
+	{
+		if(pos>count_node(head))
+		printf("\nPlease enter a vaild postion!!");
+		return head;
+	}
+	int i=0;
+	while(i<pos-1)
+	{
+		p=p->next;
+		i++;
+	}
+	
+	int x;
+	printf("\nEnter data to update : ");
+	scanf("%d",&x);
+	p->data=x;
+	
+	return head;
 }
