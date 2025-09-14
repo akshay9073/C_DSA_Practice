@@ -25,12 +25,13 @@ node *delete_duplicate(node *);
 node *merge_list(node *,node *);
 node *union_list(node *,node *);
 node *insert_sort(node *,int);
+int search_element(node *,int);
 int main()
 {
 	node *HEAD=NULL;
 	node *HEAD1=NULL,*HEAD2=NULL;
 	node *HEAD3=NULL;
-	int choice,pos,count,x;
+	int choice,pos,count,x,index;
 	while(1)
 	{
 			printf("\n===============Circular Doubly Linked List=========================\n");
@@ -51,6 +52,7 @@ int main()
 			printf("\n15)Merge Linked List");
 			printf("\n16)Union of Linked List");
 			printf("\n17)Insert Sort");
+			printf("\n18)Search in Linked List");
 			printf("\n===================================================================\n");
 	
 			printf("\nEnter your Choice : ");
@@ -161,6 +163,13 @@ int main()
 					scanf(" %d",&x);
 					HEAD=insert_sort(HEAD,x);
 					printf("\nInsert Success!!");
+					break;
+					
+				case 18:
+					printf("\nEnter element for search : ");
+					scanf(" %d",&x);
+					index=search_element(HEAD,x);
+					printf("\nElement found at node : %d ",index);
 					break;
 					
 				default:
@@ -410,7 +419,7 @@ do {
 } while(p != head);
 return count;
 
-	return count;
+
 }
 
 node *sort_node(node *head)
@@ -620,4 +629,19 @@ node *insert_sort(node *head,int x)
 	p->next=q;
 	
 	return head;
+}
+
+int search_element(node *head,int x)
+{
+	node *p=head;
+	int count=0;
+	do
+	{
+		++count;
+		if(p->data==x)
+		return count;
+		
+		p=p->next;
+	}while(p!=head);
+	return -1;
 }
