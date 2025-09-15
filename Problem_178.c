@@ -21,6 +21,7 @@ int main()
 		printf("\n===============================================================\n");
 		printf("\n1)Push");
 		printf("\n2)Pop");
+		printf("\n3)Empty");
 		printf("\n===============================================================\n");
 		
 		printf("\nEnter your Choice : ");
@@ -41,8 +42,14 @@ int main()
 			else
 			printf("\nStack is Under-Flow!!");
 			break;
+			
+		case 3:
+			if(is_empty(&s))
+			printf("\nStack is Empty");
+			else
+			printf("\nStack is Not Empty");
 	}
-	}
+}
 	
 	
 }
