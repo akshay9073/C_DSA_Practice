@@ -9,6 +9,8 @@ typedef struct stack
 
 int is_full(stack *);
 int push(stack *,int);
+int is_empty(stack *);
+int pop(stack *);
 int main()
 {
 	int choice,x;
@@ -18,6 +20,7 @@ int main()
 	{
 		printf("\n===============================================================\n");
 		printf("\n1)Push");
+		printf("\n2)Pop");
 		printf("\n===============================================================\n");
 		
 		printf("\nEnter your Choice : ");
@@ -29,6 +32,14 @@ int main()
 			printf("\nEnter element you want to PUSH : ");
 			scanf(" %d",&x);
 			push(&s,x);
+			break;
+			
+		case 2:
+			x=pop(&s);
+			if(x!=-1)
+			printf("\n%d element POP from stack ",x);
+			else
+			printf("\nStack is Under-Flow!!");
 			break;
 	}
 	}
@@ -60,4 +71,26 @@ int is_full(stack *s)
 	return 1;
 	else
 	return 0;
+}
+
+int is_empty(stack *s)
+{
+	if(s->top==-1)
+	return 1;
+	else
+	return 0;
+}
+
+int pop(stack *s)
+{
+	int x;
+	
+	if(is_empty(s))
+	return -1;
+	else
+	{
+		x=s->data[s->top];
+		s->top-=1;
+		return x;
+	}
 }
