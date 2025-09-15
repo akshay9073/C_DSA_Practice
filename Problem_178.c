@@ -11,6 +11,7 @@ int is_full(stack *);
 int push(stack *,int);
 int is_empty(stack *);
 int pop(stack *);
+void print(stack *);
 int main()
 {
 	int choice,x;
@@ -23,6 +24,7 @@ int main()
 		printf("\n2)Pop");
 		printf("\n3)Empty");
 		printf("\n4)Full");
+		printf("\n5)Print Stack Element");
 		printf("\n===============================================================\n");
 		
 		printf("\nEnter your Choice : ");
@@ -49,12 +51,23 @@ int main()
 			printf("\nStack is Empty");
 			else
 			printf("\nStack is Not Empty");
+			break;
 			
 		case 4:
 			if(is_full(&s))
 			printf("\nStack is FULL");
 			else
 			printf("\nStack is Not FULL");
+			break;
+			
+		case 5:
+			printf("\nPrint Stack Elements : ");
+			print(&s);
+			break;
+			
+		default:
+			printf("\nEnter the Correct Choice : ");
+			break;
 	}
 }
 	
@@ -69,7 +82,11 @@ int init(stack *s)
 int push(stack *s,int x)
 {
 	if(is_full(s))
-	printf("\nStack is FULL!!");
+	{
+		printf("\nStack is FULL!!");
+		printf("\nCannot PUSH %d ",x);
+		return 0;
+	}
 	else
 	{
 		s->top+=1;
@@ -106,5 +123,16 @@ int pop(stack *s)
 		x=s->data[s->top];
 		s->top-=1;
 		return x;
+	}
+}
+
+void print(stack *s)
+{
+	if(is_empty(s))
+	printf("\nStack is empty");
+	else
+	{
+		for(int i=s->top;i>-1;i--)
+		printf("%d\t",s->data[i]);
 	}
 }
