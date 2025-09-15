@@ -22,6 +22,7 @@ int main()
 		printf("\n1)Push");
 		printf("\n2)Pop");
 		printf("\n3)Empty");
+		printf("\n4)Full");
 		printf("\n===============================================================\n");
 		
 		printf("\nEnter your Choice : ");
@@ -48,6 +49,12 @@ int main()
 			printf("\nStack is Empty");
 			else
 			printf("\nStack is Not Empty");
+			
+		case 4:
+			if(is_full(&s))
+			printf("\nStack is FULL");
+			else
+			printf("\nStack is Not FULL");
 	}
 }
 	
