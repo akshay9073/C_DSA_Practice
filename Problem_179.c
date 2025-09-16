@@ -26,4 +26,11 @@ int is_full(stack *s)
 	return 0;
 }
 
+int is_empty(stack *s)
+{
+	if(s->top==-1)
+	return 1;
+	else
+	return 0;
+}
 
