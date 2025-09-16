@@ -11,6 +11,8 @@ int push(stack *,int);
 void init(stack *);
 int is_full(stack *);
 int is_empty(stack *);
+int push(stack,int);
+int pop();
 
 int main()
 {
@@ -49,3 +51,16 @@ int push(stack *s,int x)
 	}
 }
 
+int pop()
+{
+	int val;
+	if(is_empty(s))
+	printf("\nStack is Empty!!Cannot Pop");
+	else
+	{
+		val=s->data[s->top];
+		s->top-=1;
+	}
+	
+	return val;
+}
