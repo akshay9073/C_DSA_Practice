@@ -18,5 +18,12 @@ void init(stack *s)
 	s->top=-1;
 }
 
+int is_full(stack *s)
+{
+	if(s->top==MAX-1)
+	return 1;
+	else
+	return 0;
+}
 
 
