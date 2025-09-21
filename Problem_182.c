@@ -19,6 +19,12 @@ int main()
 	printf("\nEnter any number : ");
 	scanf("%d",&num);
 	
+	if(num==0)
+	{
+		printf("%d is already a binary format",num);
+		return 0;
+	}
+	
 	int temp=num;
 	while(temp!=0)
 	{
