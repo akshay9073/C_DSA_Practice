@@ -7,6 +7,12 @@ typedef struct node{
 }node;
 
 node *top=NULL;
+char pop();
+int push(char);
+int is_empty();
+char peek();
+void display();
+
 node *cn()
 {
 	return (node *)malloc(sizeof(node));
@@ -18,6 +24,10 @@ int main()
 	{
 		printf("\n==============================================\n");
 		printf("\n1)Push");
+		printf("\n2)Pop");
+		printf("\n3Is Empty");
+		printf("\n4)Peek");
+		printf("\n5)Display");
 		printf("\n==============================================\n");
 	}
 	int choice;
@@ -35,6 +45,36 @@ int main()
 				printf("%c push in stack ",ch);
 				break;
 				
+			}
+			
+		case 2:
+			{
+				char ch=pop;
+				printf("%c pop",ch);
+				break;
+			}
+			
+		case 3:
+			{
+				if(is_empty())
+				printf("\nStack is empty!!");
+				else
+				printf("\nStack is not empty!!");
+				break;
+			}
+			
+		case 4:
+			{
+				char ch=peek();
+				printf("\n%c at top",ch);
+				break;
+			}
+			
+		case 5:
+			{
+				printf("\nDisplay all the charcater in stack : ");
+				display();
+				break;
 			}
 			
 	}
@@ -83,4 +123,19 @@ char pop()
 		return ch;
 	}
 	
+}
+
+char peek()
+{
+	return top->text;
+}
+
+void display()
+{
+	node *p=top;
+	while(p!=NULL)
+	{
+		printf("%c\t",p->text);
+		p=p->next;
+	}
 }
