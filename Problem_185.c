@@ -66,3 +66,21 @@ int push(char ch)
 	}
 	return 0;	
 }
+
+char pop()
+{
+	if(top==NULL)
+	{
+		printf("\nCannot Pop!!");
+		exit(0);
+	}
+	else
+	{
+		node *temp=top;
+		char ch=temp->text;
+		top=temp->next;
+		free(temp);
+		return ch;
+	}
+	
+}
