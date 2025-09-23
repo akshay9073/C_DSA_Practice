@@ -26,4 +26,10 @@ int main()
 	}
 }
 
-
+int push(char x)
+{
+	node *p=cn();
+	p->ch=x;
+	p->next=top;
+	top=p;
+}
