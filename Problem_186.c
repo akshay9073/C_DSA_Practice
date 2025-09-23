@@ -47,3 +47,11 @@ char pop()
 	
 	return x;
 }
+
+int is_empty()
+{
+	if(top==NULL)
+	return 1;
+	else
+	return 0;
+}
