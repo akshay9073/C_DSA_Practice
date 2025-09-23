@@ -29,8 +29,8 @@ int main()
 		printf("\n4)Peek");
 		printf("\n5)Display");
 		printf("\n==============================================\n");
-	}
-	int choice;
+		
+		int choice;
 	printf("\nEnter your choice : ");
 	scanf("%d",&choice);
 	
@@ -40,7 +40,7 @@ int main()
 			{
 				printf("\nEnter the charcter to push : ");
 				char ch;
-				scanf("%c",&ch);
+				scanf(" %c",&ch);
 				push(ch);
 				printf("%c push in stack ",ch);
 				break;
@@ -49,7 +49,7 @@ int main()
 			
 		case 2:
 			{
-				char ch=pop;
+				char ch=pop();
 				printf("%c pop",ch);
 				break;
 			}
@@ -78,6 +78,18 @@ int main()
 			}
 			
 	}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	}
+	
 	
 	return 0;
 }
@@ -117,10 +129,10 @@ char pop()
 	else
 	{
 		node *temp=top;
-		char ch=temp->text;
+		char x=temp->text;
 		top=temp->next;
 		free(temp);
-		return ch;
+		return x;
 	}
 	
 }
