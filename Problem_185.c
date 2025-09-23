@@ -2,7 +2,7 @@
 #include<stdlib.h>
 
 typedef struct node{
-	char ch;
+	char text;
 	struct node *next;
 }node;
 
@@ -17,7 +17,7 @@ int main()
 	while(1)
 	{
 		printf("\n==============================================\n");
-		printf("\n1)")
+		printf("\n1)Push");
 		printf("\n==============================================\n");
 	}
 	int choice;
@@ -27,10 +27,42 @@ int main()
 	switch(choice)
 	{
 		case 1:
+			{
+				printf("\nEnter the charcter to push : ");
+				char ch;
+				scanf("%c",&ch);
+				push(ch);
+				printf("%c push in stack ",ch);
+				break;
+				
+			}
 			
 	}
 	
 	return 0;
 }
 
-int push()
+int is_empty()
+{
+	if(top==NULL)
+	return 1;
+	else
+	return 0;
+}
+
+int push(char ch)
+{
+	node *p=cn();
+	
+	if(p==NULL)
+	{
+		printf("\nStack overflow cannot allocate memory");
+	}
+	else
+	{
+			p->text=ch;
+			p->next=top;
+			top=p;
+	}
+	return 0;	
+}
