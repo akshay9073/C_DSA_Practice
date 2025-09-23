@@ -7,6 +7,9 @@ typedef struct node{
 }node;
 
 node *top=NULL;
+int push(char);
+char pop();
+int is_empty();
 
 node *cn()
 {
@@ -22,8 +25,16 @@ int main()
 	int i=0;
 	while(str[i]!='\0')
 	{
-		
+		push(str[i]);
+		i++;
 	}
+	
+	printf("\n%c\t",pop());
+	printf("\n%c\t",pop());
+	printf("\n%c\t",pop());
+	printf("\n%c\t",pop());
+	
+	return 0;
 }
 
 int push(char x)
@@ -32,6 +43,7 @@ int push(char x)
 	p->ch=x;
 	p->next=top;
 	top=p;
+	return 0;
 }
 
 char pop()
