@@ -33,3 +33,17 @@ int push(char x)
 	p->next=top;
 	top=p;
 }
+
+char pop()
+{
+	if(top==NULL)
+	{
+		printf("\nStack is empty !!");
+	}
+	node *temp=top;
+	char x=temp->ch;
+	top=temp->next;
+	free(temp);
+	
+	return x;
+}
