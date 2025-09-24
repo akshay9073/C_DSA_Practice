@@ -18,15 +18,36 @@ node *top=NULL;
 int main()
 {
 	
-	push('a');
-	push('b');
-	
-		printf("%c",top->text);
-	printf("%c",top->text);
-	
-	printf("%c",pop());
-	printf("%c",pop());
-	printf("%c",pop());
+		char ch;
+		while((ch=getchar())!='\n')
+		{
+			switch(ch)
+			{
+				case'(':
+					push(ch);
+					break;
+				case')':
+					{
+						if(!is_empty())
+						{
+							pop();
+						}
+						else
+						{
+							printf("\nMismatch!!");
+							exit(0);
+						}
+						break;
+					}
+			}
+		}
+		
+		if(is_empty())
+		printf("\nWell formed parantehese");
+		else
+		printf("\nMismatch");
+		
+		return 0;
 }
 
 int is_empty()
