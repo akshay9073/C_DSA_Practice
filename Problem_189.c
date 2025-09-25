@@ -15,7 +15,23 @@ node *cn()
 
 int main()
 {
+	int num;
+	printf("\nEnter any number : ");
+	scanf(" %d",&num);
 	
+	int temp=num;
+	
+	while(num>0)
+	{
+		push(num%2);
+		num/=2;
+	}
+	
+	printf("\n%d Deimal to binary : ",temp);
+	while(!is_empty())
+	{
+		printf("%d",pop());
+	}
 }
 
 int is_empty()
@@ -37,7 +53,7 @@ void push(int x)
 	else
 	{
 		p->data=x;
-		p->next=NULL;
+		p->next=top;
 		top=p;
 		
 	}
@@ -47,7 +63,7 @@ int pop()
 {
 	node *p=top;
 	
-	if(p==NULL)
+	if(is_empty())
 	{
 		printf("\nStack is empty !!");
 		exit(0);
