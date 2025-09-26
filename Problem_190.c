@@ -59,17 +59,6 @@ int main()
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
 void init(stack *s)
 {
 	s->top=-1;
