@@ -9,12 +9,30 @@ typedef struct node{
 
 node *top=NULL;
 int is_empty();
-void push(char );
+void push(int );
 char pop();
 int evaluate(char,int,int);
 int main()
 {
+	char exp[20];
+	printf("\nEnter the expression : ");
+	scanf(" %s",exp);
 	
+	int i=0,value;
+	while(exp[i]!='\0')
+	{
+		if(isdigit(exp[i]))
+		push(exp[i]-48);
+		else
+		{
+			value=evaluate(exp[i],pop(),pop());
+			push(value);
+		}
+		i++;
+	}
+	
+	value=pop();
+	printf("\nFinal value is : %d",value);
 	return 0;
 }
 
@@ -31,7 +49,7 @@ int is_empty()
 	return 0;
 }
 
-void push(char x)
+void push(int x)
 {
 	node *p=cn();
 	if(p==NULL)
@@ -70,13 +88,13 @@ int evaluate(char x,int op1,int op2)
 		case '+':
 			return op1+op2;
 		case '-':
-			return op1+op2;
+			return op1-op2;
 		case '*':
-			return op1+op2;
+			return op1*op2;
 		case '/':
-			return op1+op2;
+			return op1/op2;
 		case '%':
-			return op1+op2;
+			return op1%op2;
 		case '^':
 			return (pow(op1,op2));
 		default:
