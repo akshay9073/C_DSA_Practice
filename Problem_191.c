@@ -54,6 +54,11 @@ int evaluate(int v1,int v2, char op)
 			return v1/v2;
 		case '%':
 			return v1%v2;
+		case '^':
+			return (int)pow(v1,v2);
+		default:
+			printf("\nOperator not relevant");
+			break;
 		 
 	}
 }
