@@ -1,4 +1,8 @@
 #include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
+#include<ctype.h>
+
 #define MAX 100
 typedef struct stack{
 	int data[MAX];
@@ -9,32 +13,50 @@ int is_full(stack *);
 int is_empty(stack *);
 void push(stack *,int);
 int pop(stack *);
-
+int evaluate(int,int,char);
 int main()
 {
 	stack s;
 	init(&s);
 	
-	push(&s,10);
-	push(&s,20);
-	push(&s,30);
+	char exp[20];
+	printf("\nEnter the expression single digit and operators only : ");
+	scanf("%s",exp);
 	
-	printf("%d\t",pop(&s));
-	printf("%d\t",pop(&s));
-	printf("%d\t",pop(&s));
+	int i=0;
+	int value;
+	while(exp[i]!='\0')
+	{
+		if(isdigit(exp[i]))
+		push(&s,exp[i]-48);
+		else
+		{
+			value=evaluate(pop(&s),pop(&s),exp[i]);
+			push(&s,value);
+		}
+		i++;
+	}
+	value=pop(&s);
+			printf("\nFinal value is : %d ",value);
 }
 
-
-
-
-
-
-
-
-
-
-
-
+int evaluate(int v1,int v2, char op)
+{
+	switch (op){
+		
+		case '+':
+			return v1+v2;
+		case '-':
+			return v1-v2;
+		case '*':
+			return v1*v2;
+		case '/':
+			return v1/v2;
+		case '%':
+			return v1%v2;
+		 
+	}
+}
 
 
 void init(stack *s)
