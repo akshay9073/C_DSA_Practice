@@ -11,20 +11,12 @@ node *top=NULL;
 int is_empty();
 void push(char );
 char pop();
-
+int evaluate(char,int,int);
 int main()
 {
-	push('a');
-	push('s');
-	printf("%c",pop());
-	printf("%c",pop());
+	
 	return 0;
 }
-
-
-
-
-
 
 node *cn()
 {
@@ -69,5 +61,26 @@ char pop()
 		top=temp->next;
 		free(temp);
 		return x;
+	}
+}
+
+int evaluate(char x,int op1,int op2)
+{
+	switch(x){
+		case '+':
+			return op1+op2;
+		case '-':
+			return op1+op2;
+		case '*':
+			return op1+op2;
+		case '/':
+			return op1+op2;
+		case '%':
+			return op1+op2;
+		case '^':
+			return (pow(op1,op2));
+		default:
+			printf("\noperator invaild!!");
+			break;
 	}
 }
