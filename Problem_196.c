@@ -58,7 +58,7 @@ int main()
 			}
 			else
 			{
-				while(!is_empty(&s) && priority(exp[i])<=priority(top(&s)))
+				while(!is_empty(&s) && priority(exp[i])<priority(top(&s)))
 				{
 					prefix[k++]=pop(&s);
 				}
