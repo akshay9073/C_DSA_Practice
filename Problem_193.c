@@ -10,7 +10,7 @@ typedef struct node{
 node *top=NULL;
 int is_empty();
 void push(int );
-char pop();
+int pop();
 int evaluate(char,int,int);
 int main()
 {
@@ -65,7 +65,7 @@ void push(int x)
 	}
 }
 
-char pop()
+int pop()
 {
 	if(is_empty())
 	{
@@ -75,7 +75,7 @@ char pop()
 	else
 	{
 		node *temp=top;
-		char x=temp->data;
+		int x=temp->data;
 		top=temp->next;
 		free(temp);
 		return x;
