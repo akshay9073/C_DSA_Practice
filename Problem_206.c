@@ -9,7 +9,7 @@ typedef struct queue{
 
 void init(queue *);
 int is_full(queue *);
-
+int is_empty(queue *);
 
 int main()
 {
@@ -48,4 +48,10 @@ int is_full(queue *q)
 	return 0;
 }
 
-
+int is_empty(queue *q)
+{
+	if(q->f==-1 || q->r==-1)
+	return 1;
+	else
+	return 0;
+}
