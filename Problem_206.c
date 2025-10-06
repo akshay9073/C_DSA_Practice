@@ -11,6 +11,8 @@ void init(queue *);
 int is_full(queue *);
 int is_empty(queue *);
 void insert(queue *,int);
+int delete_queue(queue *);
+
 int main()
 {
 	int choice;
@@ -24,6 +26,7 @@ int main()
 		printf("\n1)Check Queue is Full");
 		printf("\n2)Check Queue is Empty");
 		printf("\n3)Insert Queue ");
+		printf("\n4)Delete Queue");
 		printf("\n=============================================\n");	
 		
 		printf("\nEnter your Choice : ");
@@ -51,7 +54,10 @@ int main()
 					
 					insert(&q,x);
 					break;
-				
+			case 4:
+				x=delete_queue(&q);
+				printf("\n%d deleted from queue",x);
+				break;
 				
 		}
 	}	
@@ -103,3 +109,25 @@ void insert(queue *q,int x)
 	}
 }
 
+int delete_queue(queue *q)
+{
+	int delete_value=q->data[q->f];
+	if(is_empty(q))
+	{
+		printf("\nQueue is Empty cannot delete!!");
+		exit(0);
+	}
+	else
+	{
+		if(q->f==q->r)
+		{
+			q->f=q->r=-1;
+		}
+		else
+		{
+			q->f+=1;
+		}
+	}
+	
+	return delete_value;
+}
