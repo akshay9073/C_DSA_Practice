@@ -4,17 +4,22 @@
 
 typedef struct queue{
 	int data[MAX];
-	int f,q;
+	int f,r;
 }queue;
+
+void init(queue *);
+int is_full(queue *);
+
 
 int main()
 {
 	int choice;
-	
+	queue q;
+	init(&q)
 	while(1)
 	{
 		printf("\n=============================================\n");
-		printf("1)")
+		printf("1)Check Queue is Full");
 		printf("\n=============================================\n");	
 		
 		printf("\nEnter your Choice : ");
@@ -27,6 +32,20 @@ int main()
 		}
 	}	
 	
+}
+
+void init(queue *q)
+{
+	q->f=q->r=-1;
+}
+
+
+int is_full(queue *q)
+{
+	if(q->r==MAX-1)
+	return 1;
+	else
+	return 0;
 }
 
 
