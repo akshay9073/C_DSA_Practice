@@ -1,4 +1,5 @@
 #include<stdio.h>
+#include<stdlib.h>
 
 #define MAX 100
 
@@ -28,6 +29,7 @@ int main()
 		printf("\n3)Insert Queue ");
 		printf("\n4)Delete Queue");
 		printf("\n5)Print Elements");
+		printf("\n6)Exit");
 		printf("\n=============================================\n");	
 		
 		printf("\nEnter your Choice : ");
@@ -65,6 +67,10 @@ int main()
 				print(&q);
 				break;
 				
+			case 6:
+				printf("\nExiting Program...");
+				exit(0);
+				break;
 		}
 	}	
 	
