@@ -27,6 +27,7 @@ int main()
 		printf("\n2)Check Queue is Empty");
 		printf("\n3)Insert Queue ");
 		printf("\n4)Delete Queue");
+		printf("\n5)Print Elements");
 		printf("\n=============================================\n");	
 		
 		printf("\nEnter your Choice : ");
@@ -57,6 +58,11 @@ int main()
 			case 4:
 				x=delete_queue(&q);
 				printf("\n%d deleted from queue",x);
+				break;
+				
+			case 5:
+				printf("\nQueue Elements are : ");
+				print(&q);
 				break;
 				
 		}
@@ -130,4 +136,12 @@ int delete_queue(queue *q)
 	}
 	
 	return delete_value;
+}
+
+void print(queue q)
+{
+	for(int i=q.f;i<=q.r;i++)
+	printf("%d\t",q.data[i]);
+	
+	
 }
