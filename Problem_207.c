@@ -13,6 +13,8 @@ bool is_full(queue *);
 bool is_empty(queue *);
 int insert(queue *,int);
 int delete_q(queue *);
+void print(queue );
+
 int main()
 {
 	int choice;
@@ -27,6 +29,7 @@ int main()
 		printf("\n2)Is Full");
 		printf("\n3)Insert in Queue");
 		printf("\n4)Delete in Queue");
+		printf("\n5)Print Queue");
 		printf("\n==========================================================\n");
 		
 		printf("\nEnter your choice : ");
@@ -61,6 +64,11 @@ int main()
 			case 4:
 				x=delete_q(&q);
 				printf("%d deleted",x);
+				break;
+				
+			case 5:
+				printf("\nPrint Queue !!");
+				print(q);
 				break;
 				
 		}
@@ -122,4 +130,24 @@ int delete_q(queue *q)
 	}
 	
 	return x;
+}
+
+void print(queue q)
+{
+	int i;
+	if(is_empty(&q))
+	{
+		printf("\nQueue is empty!");
+		exit(0);
+	}
+	else
+	{
+		printf("\n");
+		for(i=q.f;i!=q.r;i=(i+1)%MAX)
+		printf("%d\t",q.data[i]);
+		
+		printf("%d",q.data[i]);
+	}
+	
+	printf("\n");
 }
