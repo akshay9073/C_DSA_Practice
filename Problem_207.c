@@ -18,8 +18,8 @@ int main()
 	while(1)
 	{
 		printf("\n==========================================================\n");
-		printf("\n1)Insert data");
-		printf("\")
+		printf("\n1)Is empty");
+		printf("\n2)Is Full");
 		printf("\n==========================================================\n");
 		
 		printf("\nEnter your choice : ");
@@ -34,4 +34,15 @@ int init(queue *q)
 	q->f=q->r=-1;
 }
 
+bool is_empty(queue *q)
+{
+	return (q->f==-1);
+}
 
+bool is_full(queue *q)
+{
+	if((q->r+1)%MAX==q->f)
+	return true;
+	else
+	return false;
+}
