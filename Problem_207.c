@@ -1,4 +1,6 @@
 #include<stdio.h>
+#include<stdlib.h>
+#include<stdbool.h>
 #define MAX 10
 
 typedef struct queue{
@@ -7,8 +9,8 @@ typedef struct queue{
 }queue;
 
 int init(queue *);
-int is_full(queue *);
-int is_empty(queue *);
+bool is_full(queue *);
+bool is_empty(queue *);
 int insert(queue *,int);
 
 int main()
@@ -27,11 +29,11 @@ int main()
 		printf("\n==========================================================\n");
 		
 		printf("\nEnter your choice : ");
-		scanf("%d",choice);
+		scanf(" %d",&choice);
 		
 		switch(choice)
 		{
-			case 1:
+			case 2:
 				printf("\nCheck queueu is full");
 				if(is_full(&q))
 				{
@@ -41,7 +43,7 @@ int main()
 				printf("\nQueue is not full");
 				break;
 				
-			case 2:
+			case 1:
 				printf("\nCheck queue is empty");
 				if(is_empty(&q))
 				printf("\nQueue is empty!!");
@@ -72,10 +74,7 @@ bool is_empty(queue *q)
 
 bool is_full(queue *q)
 {
-	if((q->r+1)%MAX==q->f)
-	return true;
-	else
-	return false;
+	return ((q->r+1)%MAX==q->f);
 }
 
 int insert(queue *q,int x)
