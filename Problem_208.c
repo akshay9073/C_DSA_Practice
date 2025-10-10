@@ -1,4 +1,6 @@
 #include<stdio.h>
+#include<stdlib.h>
+#include<stdbool.h>
 
 typedef struct node{
 	int data;
@@ -6,7 +8,7 @@ typedef struct node{
 }node;
 
 node *f=NULL,*r=NULL;
-node *insert(int);
+void insert(int);
 void print(node *);
 int main()
 {
@@ -31,7 +33,7 @@ int main()
 			case 1:
 				printf("\nEnter your choice : ");
 				scanf(" %d",&x);
-				f=insert(x);
+				insert(x);
 				printf("%d insert success!!",x);
 				break;
 				
@@ -50,7 +52,7 @@ node *cn()
 	return (node *)malloc(sizeof(node));
 }
 
-node *insert(int x)
+void insert(int x)
 {
 	node *p=cn();
 	
@@ -75,7 +77,6 @@ node *insert(int x)
 			r=p;
 		}
 	}
-	return f;
 }
 
 void print(node *head)
