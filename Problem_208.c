@@ -10,6 +10,8 @@ typedef struct node{
 node *f=NULL,*r=NULL;
 void insert(int);
 void print(node *);
+int is_empty(node *);
+
 int main()
 {
 	int choice,x;
@@ -31,7 +33,7 @@ int main()
 		switch(choice)
 		{
 			case 1:
-				printf("\nEnter your choice : ");
+				printf("\nEnter data for queue : ");
 				scanf(" %d",&x);
 				insert(x);
 				printf("%d insert success!!",x);
@@ -40,6 +42,13 @@ int main()
 			case 3:
 				printf("\nPrint Queue Elements!!\n");
 				print(f);
+				break;
+				
+			case 4:
+				if(is_empty(f))
+				printf("\nQueue is Empty!!");
+				else
+				printf("\nQueue is not Empty!!");
 				break;
 		}
 	}
@@ -87,4 +96,12 @@ void print(node *head)
 		printf("%d\t",p->data);
 		p=p->next;
 	}
+}
+
+int is_empty(node *f)
+{
+	if(f==NULL)
+	return 1;
+	else
+	return 0;
 }
