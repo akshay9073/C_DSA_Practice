@@ -11,6 +11,7 @@ node *f=NULL,*r=NULL;
 void insert(int);
 void print(node *);
 int is_empty(node *);
+int delete_element(node *);
 
 int main()
 {
@@ -37,6 +38,11 @@ int main()
 				scanf(" %d",&x);
 				insert(x);
 				printf("%d insert success!!",x);
+				break;
+				
+			case 2:
+				x=delete_element(f);
+				printf("%d element delete form Queue",x);
 				break;
 				
 			case 3:
@@ -104,4 +110,15 @@ int is_empty(node *f)
 	return 1;
 	else
 	return 0;
+}
+
+int delete_element(node *head)
+{
+	int x;
+	node *p=head;
+	x=p->data;
+	f=p->next;
+	free(p);
+	return x;
+	
 }
