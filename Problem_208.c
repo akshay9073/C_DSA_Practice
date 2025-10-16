@@ -56,6 +56,9 @@ int main()
 				else
 				printf("\nQueue is not Empty!!");
 				break;
+				
+			case 5:
+				exit(0);
 		}
 	}
 	
