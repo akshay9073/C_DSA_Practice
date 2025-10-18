@@ -24,6 +24,7 @@ int isQueueempty(queue *);
 void enqueue(queue *,int);
 int dequeue(queue *);
 void displayQueue(queue *);
+void reverseQueue(queue *);
 
 int main()
 {
@@ -34,12 +35,14 @@ int main()
 	enqueue(&q,20);
 	enqueue(&q,10);
 	enqueue(&q,30);
-
-	displayQueue(&q);
+	enqueue(&q,40);
 	
-	printf("\nPop %d",dequeue(&q));
-	printf("\nPop %d",dequeue(&q));
-	printf("\nPop %d",dequeue(&q));
+	displayQueue(&q);
+
+	reverseQueue(&q);
+//	printf("\nPop %d",dequeue(&q));
+//	printf("\nPop %d",dequeue(&q));
+//	printf("\nPop %d",dequeue(&q));
 	
 	displayQueue(&q);
 	
@@ -107,7 +110,7 @@ void displayQueue(queue *q)
 
 int initStack(stack *s)
 {
-	s->top==-1;
+	s->top=-1;
 }
 
 int isStackfull(stack *s)
@@ -148,5 +151,16 @@ int pop(stack *s)
 	return data;
 }
 
+void reverseQueue(queue *q)
+{
+	stack s;
+	initStack(&s);
+	
+	while(!isQueueempty(q))
+	push(&s,dequeue(q));
+	
+	while(!isStackEmpty(&s))
+	enqueue(q,pop(&s));
+}
 
 
